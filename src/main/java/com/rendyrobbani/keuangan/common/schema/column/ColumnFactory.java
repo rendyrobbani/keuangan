@@ -1,4 +1,4 @@
-package com.rendyrobbani.keuangan.common.schema;
+package com.rendyrobbani.keuangan.common.schema.column;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -137,6 +137,32 @@ public final class ColumnFactory {
 
 	public static Column createDateTime(String name) {
 		return createDateTime(name, true);
+	}
+
+	// Latte
+
+	public static Column createNip(String name, boolean isNullable, boolean isPrimaryKey) {
+		return createChar(name, 18, isNullable, isPrimaryKey);
+	}
+
+	public static Column createNip(String name, boolean isNullable) {
+		return createNip(name, isNullable, false);
+	}
+
+	public static Column createPangkat(String name, boolean isNullable, boolean isPrimaryKey) {
+		return createChar(name, 2, isNullable, isPrimaryKey);
+	}
+
+	public static Column createPangkat(String name, boolean isNullable) {
+		return createPangkat(name, isNullable, false);
+	}
+
+	public static Column createGender(String name, boolean isNullable, boolean isPrimaryKey) {
+		return createTinyInt(name, isNullable, isPrimaryKey);
+	}
+
+	public static Column createGender(String name, boolean isNullable) {
+		return createGender(name, isNullable, false);
 	}
 
 }

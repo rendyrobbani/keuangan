@@ -1,9 +1,8 @@
-package com.rendyrobbani.keuangan.domain.entity.data.user;
+package com.rendyrobbani.keuangan.domain.entity.user;
 
 import com.rendyrobbani.keuangan.common.marker.HasId;
 import com.rendyrobbani.keuangan.common.vo.Pangkat;
 import com.rendyrobbani.keuangan.common.vo.nip.Nip;
-import com.rendyrobbani.keuangan.domain.entity.base.user.BaseUser;
 
 import java.time.LocalDateTime;
 

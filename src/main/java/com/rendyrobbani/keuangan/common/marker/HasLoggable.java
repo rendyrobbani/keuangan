@@ -4,7 +4,7 @@ import com.rendyrobbani.keuangan.common.vo.nip.Nip;
 
 import java.time.LocalDateTime;
 
-public interface HasLoggable<Subject, SubjectID> {
+public interface HasLoggable<SUBJECT, SUBJECTID> {
 
 	LocalDateTime getLoggedAt();
 
@@ -14,15 +14,15 @@ public interface HasLoggable<Subject, SubjectID> {
 
 	void setLoggedBy(Nip loggedBy);
 
-	Subject getSubject();
+	SUBJECT getSubject();
 
-	void setSubject(Subject subject);
+	void setSubject(SUBJECT subject);
 
-	SubjectID getSubjectId();
+	SUBJECTID getSubjectId();
 
-	void setSubjectId(SubjectID subjectId);
+	void setSubjectId(SUBJECTID subjectId);
 
-	default void log(LocalDateTime loggedAt, Nip loggedBy, Subject subject) {
+	default void log(LocalDateTime loggedAt, Nip loggedBy, SUBJECT subject) {
 		this.setLoggedAt(loggedAt);
 		this.setLoggedBy(loggedBy);
 		this.setSubject(subject);

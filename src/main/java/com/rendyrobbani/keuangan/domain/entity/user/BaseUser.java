@@ -1,4 +1,4 @@
-package com.rendyrobbani.keuangan.domain.entity.base.user;
+package com.rendyrobbani.keuangan.domain.entity.user;
 
 import com.rendyrobbani.keuangan.common.marker.*;
 import com.rendyrobbani.keuangan.common.vo.Gender;

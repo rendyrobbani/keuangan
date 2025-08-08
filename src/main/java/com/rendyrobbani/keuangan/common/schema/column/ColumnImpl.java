@@ -1,4 +1,4 @@
-package com.rendyrobbani.keuangan.common.schema;
+package com.rendyrobbani.keuangan.common.schema.column;
 
 import lombok.Getter;
 
