@@ -1,4 +1,4 @@
-package com.rendyrobbani.keuangan.infrastructure.entity;
+package com.rendyrobbani.keuangan.infrastructure.persistence.entity;
 
 import jakarta.persistence.MappedSuperclass;
 

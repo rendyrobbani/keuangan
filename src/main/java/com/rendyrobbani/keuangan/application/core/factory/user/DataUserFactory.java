@@ -1,7 +1,8 @@
-package com.rendyrobbani.keuangan.infrastructure.entity.user;
+package com.rendyrobbani.keuangan.application.core.factory.user;
 
 import com.rendyrobbani.keuangan.common.vo.nip.Nip;
 import com.rendyrobbani.keuangan.domain.entity.user.DataUser;
+import com.rendyrobbani.keuangan.infrastructure.persistence.entity.user.DataUserEntity;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

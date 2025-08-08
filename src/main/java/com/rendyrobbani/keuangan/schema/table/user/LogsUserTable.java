@@ -57,9 +57,8 @@ public final class LogsUserTable {
 			foreignKeys.addAll(LockableTable.getForeignKeys(NAME, foreignKeys.size() + 1));
 			foreignKeys.addAll(AuditableTable.getForeignKeys(NAME, foreignKeys.size() + 1));
 
-			foreignKeys.add(ForeignKeyConstraintFactory.create(NAME, foreignKeys.size() + 1, "subject_id", DataUserTable.NAME, "id"));
-
 			foreignKeys.addAll(LoggableTable.getForeignKeys(NAME, foreignKeys.size() + 1));
+			foreignKeys.add(ForeignKeyConstraintFactory.create(NAME, foreignKeys.size() + 1, "subject_id", DataUserTable.NAME, "id"));
 		}
 		return foreignKeys;
 	}

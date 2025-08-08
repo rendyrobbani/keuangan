@@ -1,4 +1,4 @@
-package com.rendyrobbani.keuangan.infrastructure.converter;
+package com.rendyrobbani.keuangan.infrastructure.persistence.converter;
 
 import com.rendyrobbani.keuangan.common.vo.nip.Nip;
 import com.rendyrobbani.keuangan.common.vo.nip.NipFactory;

@@ -29,8 +29,8 @@ public final class DataUserTable {
 			columns.add(ColumnFactory.createNip("id", false, true));
 			columns.add(ColumnFactory.createPangkat("pangkat", false));
 			columns.add(ColumnFactory.createVarChar("name", false));
-			columns.add(ColumnFactory.createVarChar("title_prefix", false));
-			columns.add(ColumnFactory.createVarChar("title_suffix", false));
+			columns.add(ColumnFactory.createVarChar("title_prefix", true));
+			columns.add(ColumnFactory.createVarChar("title_suffix", true));
 			columns.add(ColumnFactory.createVarChar("password", false));
 			columns.add(ColumnFactory.createDateOnly("birth_date", false));
 			columns.add(ColumnFactory.createDateOnly("start_date", true));

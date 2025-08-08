@@ -4,8 +4,8 @@ create or replace table logs_user (
 	id           bigint(20)   not null auto_increment,
 	pangkat      char(2)      not null,
 	name         varchar(255) not null,
-	title_prefix varchar(255) not null,
-	title_suffix varchar(255) not null,
+	title_prefix varchar(255) null,
+	title_suffix varchar(255) null,
 	password     varchar(255) not null,
 	birth_date   date         not null,
 	start_date   date         null,
@@ -33,8 +33,8 @@ create or replace table logs_user (
 	constraint fk_logs_user_02 foreign key (created_by) references data_user (id),
 	constraint fk_logs_user_03 foreign key (updated_by) references data_user (id),
 	constraint fk_logs_user_04 foreign key (deleted_by) references data_user (id),
-	constraint fk_logs_user_05 foreign key (subject_id) references data_user (id),
-	constraint fk_logs_user_06 foreign key (logged_by) references data_user (id),
+	constraint fk_logs_user_05 foreign key (logged_by) references data_user (id),
+	constraint fk_logs_user_06 foreign key (subject_id) references data_user (id),
 	primary key (id)
 ) engine = innodb
   charset = utf8mb4

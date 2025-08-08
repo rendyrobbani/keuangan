@@ -10,8 +10,6 @@ public interface DataUserMutator extends DataUser, HasLockMutatorSupport, HasAud
 
 	void setBirthDate(LocalDate birthDate);
 
-	void setStartDate(LocalDate startDate);
-
 	void setGender(Gender gender);
 
 	void setNumber(Integer number);
