@@ -3,6 +3,7 @@ package com.rendyrobbani.keuangan.schema;
 import com.rendyrobbani.keuangan.common.schema.table.Table;
 import com.rendyrobbani.keuangan.common.util.number.NumberUtil;
 import com.rendyrobbani.keuangan.schema.table.user.DataUserTable;
+import com.rendyrobbani.keuangan.schema.table.user.LogsUserTable;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -18,6 +19,7 @@ public final class KeuanganSchema {
 	private static List<Table> getUserTables() {
 		var tables = new ArrayList<Table>();
 		tables.add(DataUserTable.getTable());
+		tables.add(LogsUserTable.getTable());
 		return tables;
 	}
 

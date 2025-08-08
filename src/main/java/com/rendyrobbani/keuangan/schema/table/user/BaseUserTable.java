@@ -37,15 +37,12 @@ public final class BaseUserTable {
 		return columns;
 	}
 
-	private static List<CheckConstraint> checks;
 
 	public static List<CheckConstraint> getChecks(String tableName, Integer index) {
-		if (checks == null) {
-			checks = new ArrayList<>();
-			checks.add(CheckConstraintFactory.columnPangkat(tableName, checks.size() + index, "pangkat"));
-			checks.add(CheckConstraintFactory.columnGender(tableName, checks.size() + index, "gender"));
-			checks.add(CheckConstraintFactory.columnBetween(tableName, checks.size() + index, "number", 1, 999));
-		}
+		var checks = new ArrayList<CheckConstraint>();
+		checks.add(CheckConstraintFactory.columnPangkat(tableName, checks.size() + index, "pangkat"));
+		checks.add(CheckConstraintFactory.columnGender(tableName, checks.size() + index, "gender"));
+		checks.add(CheckConstraintFactory.columnBetween(tableName, checks.size() + index, "number", 1, 999));
 		return checks;
 	}
 

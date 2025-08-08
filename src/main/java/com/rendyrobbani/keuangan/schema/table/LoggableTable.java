@@ -13,46 +13,26 @@ import java.util.List;
 
 @SuppressWarnings("ConstantValue")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class AuditableTable {
+public final class LoggableTable {
 
 	private static List<Column> columns;
 
 	public static List<Column> getColumns() {
 		if (columns == null) {
 			columns = new ArrayList<>();
-			columns.add(ColumnFactory.createDateTime("created_at", false));
-			columns.add(ColumnFactory.createNip("created_by", false));
-			columns.add(ColumnFactory.createDateTime("updated_at", true));
-			columns.add(ColumnFactory.createNip("updated_by", true));
-			columns.add(ColumnFactory.createBoolean("is_deleted", false));
-			columns.add(ColumnFactory.createDateTime("deleted_at", true));
-			columns.add(ColumnFactory.createNip("deleted_by", true));
+			columns.add(ColumnFactory.createDateTime("logged_at", true));
+			columns.add(ColumnFactory.createNip("logged_by", true));
 		}
 		return columns;
 	}
 
-	private static List<ForeignKeyConstraint> foreignKeys;
 
 	public static List<ForeignKeyConstraint> getForeignKeys(String tableName, Integer index) {
 		var foreignKeys = new ArrayList<ForeignKeyConstraint>();
 		foreignKeys.add(ForeignKeyConstraintFactory.create(
 				tableName,
 				foreignKeys.size() + index,
-				"created_by",
-				DataUserTable.NAME,
-				"id"
-		));
-		foreignKeys.add(ForeignKeyConstraintFactory.create(
-				tableName,
-				foreignKeys.size() + index,
-				"updated_by",
-				DataUserTable.NAME,
-				"id"
-		));
-		foreignKeys.add(ForeignKeyConstraintFactory.create(
-				tableName,
-				foreignKeys.size() + index,
-				"deleted_by",
+				"logged_by",
 				DataUserTable.NAME,
 				"id"
 		));
