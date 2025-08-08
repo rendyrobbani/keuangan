@@ -4,6 +4,7 @@ import com.rendyrobbani.keuangan.common.schema.column.Column;
 import com.rendyrobbani.keuangan.common.schema.constraint.check.CheckConstraint;
 import com.rendyrobbani.keuangan.common.schema.constraint.foreign.ForeignKeyConstraint;
 import com.rendyrobbani.keuangan.common.schema.constraint.primary.PrimaryConstraint;
+import com.rendyrobbani.keuangan.common.schema.constraint.unique.UniqueConstraint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,8 @@ public interface Table {
 	List<CheckConstraint> getChecks();
 
 	List<ForeignKeyConstraint> getForeignKeys();
+
+	List<UniqueConstraint> getUniques();
 
 	default Column findColumn(String name) {
 		return this.getColumns().stream().filter(c -> c.getName().equals(name)).findFirst().orElse(null);
@@ -54,6 +57,7 @@ public interface Table {
 		}
 		if (getChecks() != null) for (var c : this.getChecks()) ddl.add("\t" + c.getNameAndValue() + ",");
 		if (getForeignKeys() != null) for (var c : this.getForeignKeys()) ddl.add("\t" + c.getNameAndValue() + ",");
+		if (getUniques() != null) for (var c : this.getUniques()) ddl.add("\t" + c.getNameAndValue() + ",");
 		ddl.add("\t" + this.getPrimary().getValue());
 		ddl.add(") engine = " + ENGINE);
 		ddl.add("  charset = " + CHARSET);

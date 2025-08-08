@@ -2,6 +2,8 @@ package com.rendyrobbani.keuangan.schema;
 
 import com.rendyrobbani.keuangan.common.schema.table.Table;
 import com.rendyrobbani.keuangan.common.util.number.NumberUtil;
+import com.rendyrobbani.keuangan.schema.table.master.fungsi.DataMasterFungsiTable;
+import com.rendyrobbani.keuangan.schema.table.master.subfungsi.DataMasterSubfungsiTable;
 import com.rendyrobbani.keuangan.schema.table.user.DataUserTable;
 import com.rendyrobbani.keuangan.schema.table.user.LogsUserTable;
 import lombok.AccessLevel;
@@ -23,12 +25,20 @@ public final class KeuanganSchema {
 		return tables;
 	}
 
+	private static List<Table> getMasterTables() {
+		var tables = new ArrayList<Table>();
+		tables.add(DataMasterFungsiTable.getTable());
+		tables.add(DataMasterSubfungsiTable.getTable());
+		return tables;
+	}
+
 	private static List<Table> tables;
 
 	public static List<Table> getTables() {
 		if (tables == null) {
 			tables = new ArrayList<>();
 			tables.addAll(getUserTables());
+			tables.addAll(getMasterTables());
 		}
 		return tables;
 	}

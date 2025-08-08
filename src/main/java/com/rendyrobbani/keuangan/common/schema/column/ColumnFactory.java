@@ -165,4 +165,20 @@ public final class ColumnFactory {
 		return createGender(name, isNullable, false);
 	}
 
+	public static Column createFungsiCode(String name, boolean isNullable, boolean isPrimaryKey) {
+		return createChar(name, 2, isNullable, isPrimaryKey);
+	}
+
+	public static Column createFungsiCode(String name, boolean isNullable) {
+		return createFungsiCode(name, isNullable, false);
+	}
+
+	public static Column createSubfungsiCode(String name, boolean isNullable, boolean isPrimaryKey) {
+		return createChar(name, 5, isNullable, isPrimaryKey);
+	}
+
+	public static Column createSubfungsiCode(String name, boolean isNullable) {
+		return createSubfungsiCode(name, isNullable, false);
+	}
+
 }

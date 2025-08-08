@@ -4,6 +4,7 @@ import com.rendyrobbani.keuangan.common.schema.column.Column;
 import com.rendyrobbani.keuangan.common.schema.constraint.check.CheckConstraint;
 import com.rendyrobbani.keuangan.common.schema.constraint.foreign.ForeignKeyConstraint;
 import com.rendyrobbani.keuangan.common.schema.constraint.primary.PrimaryConstraint;
+import com.rendyrobbani.keuangan.common.schema.constraint.unique.UniqueConstraint;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -23,5 +24,7 @@ final class TableImpl implements Table {
 	private final List<CheckConstraint> checks;
 
 	private final List<ForeignKeyConstraint> foreignKeys;
+
+	private final List<UniqueConstraint> uniques;
 
 }

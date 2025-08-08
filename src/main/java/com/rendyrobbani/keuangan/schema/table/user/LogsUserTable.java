@@ -66,7 +66,7 @@ public final class LogsUserTable {
 	private static Table table;
 
 	public static Table getTable() {
-		if (table == null) table = TableFactory.createTable(NAME, getColumns(), getChecks(), getForeignKeys());
+		if (table == null) table = TableFactory.createTable(NAME, getColumns(), getChecks(), getForeignKeys(), null);
 		return table;
 	}
 
