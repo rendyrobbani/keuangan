@@ -1,38 +1,50 @@
 package com.rendyrobbani.keuangan.domain.entity.user;
 
-import com.rendyrobbani.keuangan.common.marker.HasId;
+import com.rendyrobbani.keuangan.common.marker.*;
+import com.rendyrobbani.keuangan.common.vo.Gender;
 import com.rendyrobbani.keuangan.common.vo.Pangkat;
 import com.rendyrobbani.keuangan.common.vo.nip.Nip;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-public interface DataUser extends BaseUser, HasId<String> {
+public interface DataUser extends HasPangkat, HasNameAndTitle, HasLockMutator, HasAuditMutator {
 
-	default void create(LocalDateTime createdAt,
-	                    Nip createdBy,
-	                    Nip nip,
-	                    Pangkat pangkat,
-	                    String name,
-	                    String titlePrefix,
-	                    String titleSuffix,
-	                    String password) {
-		this.create(createdAt, createdBy);
+	String getId();
 
-		this.setNip(nip);
-		this.setPangkat(pangkat);
-		this.setName(name);
-		this.setTitlePrefix(titlePrefix);
-		this.setTitleSuffix(titleSuffix);
-		this.setPassword(password);
+	Nip getNip();
 
-		this.setId(nip.getValue());
-		this.setBirthDate(nip.getBirthDate());
-		this.setStartDate(nip.getStartDate());
-		this.setGender(nip.getGender());
-		this.setNumber(nip.getNumber());
+	Pangkat getPangkat();
 
-		this.setPNS(pangkat.isPNS());
-		this.setP3K(pangkat.isP3K());
-	}
+	String getName();
+
+	String getTitlePrefix();
+
+	String getTitleSuffix();
+
+	String getPassword();
+
+	LocalDate getBirthDate();
+
+	LocalDate getStartDate();
+
+	Gender getGender();
+
+	Integer getNumber();
+
+	boolean isPNS();
+
+	boolean isP3K();
+
+	void setPangkat(Pangkat pangkat);
+
+	void setName(String name);
+
+	void setTitlePrefix(String titlePrefix);
+
+	void setTitleSuffix(String titleSuffix);
+
+	void setPassword(String password);
+
+	void setStartDate(LocalDate startDate);
 
 }

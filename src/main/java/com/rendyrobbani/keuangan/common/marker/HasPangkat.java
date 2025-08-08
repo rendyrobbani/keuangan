@@ -4,8 +4,6 @@ import com.rendyrobbani.keuangan.common.vo.Pangkat;
 
 public interface HasPangkat {
 
-	void setPangkat(Pangkat pangkat);
-
 	Pangkat getPangkat();
 
 	default String getPangkatValue() {

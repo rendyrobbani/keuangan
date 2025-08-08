@@ -11,6 +11,8 @@ create or replace table data_user (
 	start_date   date         null,
 	gender       tinyint(4)   not null,
 	number       tinyint(4)   not null,
+	is_pns       bit(1)       not null,
+	is_p3k       bit(1)       not null,
 	is_locked    bit(1)       not null,
 	locked_at    datetime     null,
 	locked_by    char(18)     null,

@@ -2,8 +2,8 @@ package com.rendyrobbani.keuangan.common.marker;
 
 import com.rendyrobbani.keuangan.common.vo.nip.Nip;
 
-public interface HasNip {
+public interface HasNipMutator {
 
-	Nip getNip();
+	void setNip(Nip nip);
 
 }

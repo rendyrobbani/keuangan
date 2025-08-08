@@ -9,11 +9,7 @@ public interface HasNameAndTitle extends HasName {
 		return this.getName();
 	}
 
-	void setTitlePrefix(String titlePrefix);
-
 	String getTitlePrefix();
-
-	void setTitleSuffix(String titleSuffix);
 
 	String getTitleSuffix();
 

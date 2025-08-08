@@ -3,6 +3,7 @@ package com.rendyrobbani.keuangan.schema.table.user;
 import com.rendyrobbani.keuangan.common.schema.column.Column;
 import com.rendyrobbani.keuangan.common.schema.column.ColumnFactory;
 import com.rendyrobbani.keuangan.common.schema.constraint.check.CheckConstraint;
+import com.rendyrobbani.keuangan.common.schema.constraint.check.CheckConstraintFactory;
 import com.rendyrobbani.keuangan.common.schema.constraint.foreign.ForeignKeyConstraint;
 import com.rendyrobbani.keuangan.common.schema.constraint.foreign.ForeignKeyConstraintFactory;
 import com.rendyrobbani.keuangan.common.schema.table.Table;
@@ -41,7 +42,9 @@ public final class LogsUserTable {
 	private static List<CheckConstraint> getChecks() {
 		if (checks == null) {
 			checks = new ArrayList<>();
-			checks.addAll(BaseUserTable.getChecks(NAME, checks.size() + 1));
+			checks.add(CheckConstraintFactory.columnPangkat(NAME, checks.size() + 1, "pangkat"));
+			checks.add(CheckConstraintFactory.columnGender(NAME, checks.size() + 1, "gender"));
+			checks.add(CheckConstraintFactory.columnBetween(NAME, checks.size() + 1, "number", 1, 999));
 		}
 		return checks;
 	}
