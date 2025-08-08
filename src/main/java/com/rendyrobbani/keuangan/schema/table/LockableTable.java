@@ -2,12 +2,16 @@ package com.rendyrobbani.keuangan.schema.table;
 
 import com.rendyrobbani.keuangan.common.schema.column.Column;
 import com.rendyrobbani.keuangan.common.schema.column.ColumnFactory;
+import com.rendyrobbani.keuangan.common.schema.constraint.foreign.ForeignKeyConstraint;
+import com.rendyrobbani.keuangan.common.schema.constraint.foreign.ForeignKeyConstraintFactory;
+import com.rendyrobbani.keuangan.schema.table.user.DataUserTable;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("ConstantValue")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class LockableTable {
 
@@ -21,6 +25,22 @@ public final class LockableTable {
 			columns.add(ColumnFactory.createNip("locked_by", true));
 		}
 		return columns;
+	}
+
+	private static List<ForeignKeyConstraint> foreignKeys;
+
+	public static List<ForeignKeyConstraint> getForeignKeys(String tableName, Integer index) {
+		if (foreignKeys == null) {
+			foreignKeys = new ArrayList<>();
+			foreignKeys.add(ForeignKeyConstraintFactory.create(
+					tableName,
+					foreignKeys.size() + index,
+					"locked_by",
+					DataUserTable.NAME,
+					"id"
+			));
+		}
+		return foreignKeys;
 	}
 
 }

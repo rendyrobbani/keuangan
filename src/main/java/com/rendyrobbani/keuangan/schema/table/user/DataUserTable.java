@@ -4,8 +4,11 @@ import com.rendyrobbani.keuangan.common.schema.column.Column;
 import com.rendyrobbani.keuangan.common.schema.column.ColumnFactory;
 import com.rendyrobbani.keuangan.common.schema.constraint.check.CheckConstraint;
 import com.rendyrobbani.keuangan.common.schema.constraint.check.CheckConstraintFactory;
+import com.rendyrobbani.keuangan.common.schema.constraint.foreign.ForeignKeyConstraint;
 import com.rendyrobbani.keuangan.common.schema.table.Table;
 import com.rendyrobbani.keuangan.common.schema.table.TableFactory;
+import com.rendyrobbani.keuangan.schema.table.AuditableTable;
+import com.rendyrobbani.keuangan.schema.table.LockableTable;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -31,7 +34,7 @@ public final class DataUserTable {
 
 	private static List<CheckConstraint> checks;
 
-	public static List<CheckConstraint> getChecks() {
+	private static List<CheckConstraint> getChecks() {
 		if (checks == null) {
 			checks = new ArrayList<>();
 			checks.add(CheckConstraintFactory.columnIsNip(NAME, checks.size() + 1, "id"));
@@ -40,10 +43,21 @@ public final class DataUserTable {
 		return checks;
 	}
 
+	private static List<ForeignKeyConstraint> foreignKeys;
+
+	public static List<ForeignKeyConstraint> getForeignKeys() {
+		if (foreignKeys == null) {
+			foreignKeys = new ArrayList<>();
+			foreignKeys.addAll(LockableTable.getForeignKeys(NAME, foreignKeys.size() + 1));
+			foreignKeys.addAll(AuditableTable.getForeignKeys(NAME, foreignKeys.size() + 1));
+		}
+		return foreignKeys;
+	}
+
 	private static Table table;
 
 	public static Table getTable() {
-		if (table == null) table = TableFactory.createTable(NAME, getColumns(), getChecks());
+		if (table == null) table = TableFactory.createTable(NAME, getColumns(), getChecks(), getForeignKeys());
 		return table;
 	}
 

@@ -1,16 +1,18 @@
-package com.rendyrobbani.keuangan.common.schema.constraint.check;
+package com.rendyrobbani.keuangan.common.schema.constraint.unique;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @Getter
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 @SuppressWarnings("ClassCanBeRecord")
-public final class CheckConstraintImpl implements CheckConstraint {
+public final class UniqueConstraintImpl implements UniqueConstraint {
 
 	private final String name;
 
-	private final String logic;
+	private final List<String> columnNames;
 
 }

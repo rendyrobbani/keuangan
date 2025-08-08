@@ -1,16 +1,16 @@
-package com.rendyrobbani.keuangan.common.schema.constraint.check;
+package com.rendyrobbani.keuangan.common.schema.constraint.primary;
 
-import com.rendyrobbani.keuangan.common.schema.column.Column;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
 @Getter
-@RequiredArgsConstructor
+@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 @SuppressWarnings("ClassCanBeRecord")
 public final class PrimaryConstraintImpl implements PrimaryConstraint {
 
-	private final List<Column> columns;
+	private final List<String> columnNames;
 
 }

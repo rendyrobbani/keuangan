@@ -2,7 +2,8 @@ package com.rendyrobbani.keuangan.common.schema.table;
 
 import com.rendyrobbani.keuangan.common.schema.column.Column;
 import com.rendyrobbani.keuangan.common.schema.constraint.check.CheckConstraint;
-import com.rendyrobbani.keuangan.common.schema.constraint.check.PrimaryConstraint;
+import com.rendyrobbani.keuangan.common.schema.constraint.foreign.ForeignKeyConstraint;
+import com.rendyrobbani.keuangan.common.schema.constraint.primary.PrimaryConstraint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,8 @@ public interface Table {
 	PrimaryConstraint getPrimary();
 
 	List<CheckConstraint> getChecks();
+
+	List<ForeignKeyConstraint> getForeignKeys();
 
 	default Column findColumn(String name) {
 		return this.getColumns().stream().filter(c -> c.getName().equals(name)).findFirst().orElse(null);
@@ -49,12 +52,17 @@ public interface Table {
 			if (column.isAutoIncrement()) attr += " auto_increment";
 			ddl.add("\t" + String.join(" ", name, type, attr) + ",");
 		}
-		if (getChecks() != null) for (var check : this.getChecks()) ddl.add("\t" + check.getNameAndValue() + ",");
+		if (getChecks() != null) for (var c : this.getChecks()) ddl.add("\t" + c.getNameAndValue() + ",");
+		if (getForeignKeys() != null) for (var c : this.getForeignKeys()) ddl.add("\t" + c.getNameAndValue() + ",");
 		ddl.add("\t" + this.getPrimary().getValue());
 		ddl.add(") engine = " + ENGINE);
 		ddl.add("  charset = " + CHARSET);
 		ddl.add("  collate = " + COLLATE + ";");
 		return String.join(System.lineSeparator(), ddl);
+	}
+
+	default String getCreateDDL() {
+		return this.getCreateDDL(true);
 	}
 
 }
