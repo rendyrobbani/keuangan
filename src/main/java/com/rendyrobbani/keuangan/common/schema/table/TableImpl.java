@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @RequiredArgsConstructor
 @SuppressWarnings("ClassCanBeRecord")
-public final class TableImpl implements Table {
+final class TableImpl implements Table {
 
 	private final String name;
 

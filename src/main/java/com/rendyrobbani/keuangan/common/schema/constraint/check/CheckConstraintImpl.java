@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 @SuppressWarnings("ClassCanBeRecord")
-public final class CheckConstraintImpl implements CheckConstraint {
+final class CheckConstraintImpl implements CheckConstraint {
 
 	private final String name;
 

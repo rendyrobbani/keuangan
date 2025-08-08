@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 @SuppressWarnings("ClassCanBeRecord")
-public final class PrimaryConstraintImpl implements PrimaryConstraint {
+final class PrimaryConstraintImpl implements PrimaryConstraint {
 
 	private final List<String> columnNames;
 

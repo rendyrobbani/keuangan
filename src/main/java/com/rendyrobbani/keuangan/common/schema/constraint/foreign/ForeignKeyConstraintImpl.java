@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 @SuppressWarnings("ClassCanBeRecord")
-public final class ForeignKeyConstraintImpl implements ForeignKeyConstraint {
+final class ForeignKeyConstraintImpl implements ForeignKeyConstraint {
 
 	private final String name;
 

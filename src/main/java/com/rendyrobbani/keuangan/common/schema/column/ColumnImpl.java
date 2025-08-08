@@ -3,7 +3,7 @@ package com.rendyrobbani.keuangan.common.schema.column;
 import lombok.Getter;
 
 @Getter
-public final class ColumnImpl implements Column {
+final class ColumnImpl implements Column {
 
 	private final String name;
 
@@ -17,7 +17,7 @@ public final class ColumnImpl implements Column {
 
 	private final boolean isAutoIncrement;
 
-	public ColumnImpl(String name, String size, ColumnType type, boolean isNullable, boolean isPrimaryKey, boolean isAutoIncrement) {
+	ColumnImpl(String name, String size, ColumnType type, boolean isNullable, boolean isPrimaryKey, boolean isAutoIncrement) {
 		this.name = name;
 		this.size = size;
 		this.type = type;
