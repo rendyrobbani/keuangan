@@ -1,4 +1,4 @@
-package com.rendyrobbani.keuangan.schema.table.master.subfungsi;
+package com.rendyrobbani.keuangan.schema.table.master.bidang;
 
 import com.rendyrobbani.keuangan.common.schema.column.Column;
 import com.rendyrobbani.keuangan.common.schema.column.ColumnFactory;
@@ -12,7 +12,7 @@ import com.rendyrobbani.keuangan.common.schema.table.Table;
 import com.rendyrobbani.keuangan.common.schema.table.TableFactory;
 import com.rendyrobbani.keuangan.schema.table.AuditableTable;
 import com.rendyrobbani.keuangan.schema.table.LockableTable;
-import com.rendyrobbani.keuangan.schema.table.master.fungsi.DataMasterFungsiTable;
+import com.rendyrobbani.keuangan.schema.table.master.urusan.DataMasterUrusanTable;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -21,22 +21,22 @@ import java.util.List;
 
 @SuppressWarnings("ConstantValue")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class DataMasterSubfungsiTable {
+public final class DataMasterBidangTable {
 
-	public static final String NAME = "data_master_subfungsi";
+	public static final String NAME = "data_master_bidang";
 
 	private static List<Column> columns;
 
 	private static List<Column> getColumns() {
 		if (columns == null) {
 			columns = new ArrayList<>();
-			columns.add(ColumnFactory.createSubfungsiCode("id", false, true));
-			columns.add(ColumnFactory.createSubfungsiCode("code", false));
+			columns.add(ColumnFactory.createBidangCode("id", false, true));
+			columns.add(ColumnFactory.createBidangCode("code", false));
 			columns.add(ColumnFactory.createVarChar("name", false));
 			columns.addAll(LockableTable.getColumns());
 			columns.addAll(AuditableTable.getColumns());
 
-			columns.add(ColumnFactory.createFungsiCode("fungsi_id", false));
+			columns.add(ColumnFactory.createUrusanCode("urusan_id", false));
 		}
 		return columns;
 	}
@@ -46,8 +46,8 @@ public final class DataMasterSubfungsiTable {
 	private static List<CheckConstraint> getChecks() {
 		if (checks == null) {
 			checks = new ArrayList<>();
-			checks.add(CheckConstraintFactory.columnsEqual(NAME, checks.size() + 1, "id", "code"));
-			checks.add(CheckConstraintFactory.columnsStartsWith(NAME, checks.size() + 1, "id", "fungsi_id"));
+			checks.add(CheckConstraintFactory.columnEquals(NAME, checks.size() + 1, "id", "replace(code, 'X', '0')"));
+			checks.add(CheckConstraintFactory.columnsStartsWith(NAME, checks.size() + 1, "id", "urusan_id"));
 		}
 		return checks;
 	}
@@ -60,7 +60,7 @@ public final class DataMasterSubfungsiTable {
 			foreignKeys.addAll(LockableTable.getForeignKeys(NAME, foreignKeys.size() + 1));
 			foreignKeys.addAll(AuditableTable.getForeignKeys(NAME, foreignKeys.size() + 1));
 
-			foreignKeys.add(ForeignKeyConstraintFactory.create(NAME, foreignKeys.size() + 1, "fungsi_id", DataMasterFungsiTable.NAME, "id"));
+			foreignKeys.add(ForeignKeyConstraintFactory.create(NAME, foreignKeys.size() + 1, "urusan_id", DataMasterUrusanTable.NAME, "id"));
 		}
 		return foreignKeys;
 	}
@@ -70,7 +70,7 @@ public final class DataMasterSubfungsiTable {
 	public static List<UniqueConstraint> getUniques() {
 		if (uniques == null) {
 			uniques = new ArrayList<>();
-			uniques.add(UniqueConstraintFactory.create(NAME, uniques.size() + 1, List.of("fungsi_id", "id")));
+			uniques.add(UniqueConstraintFactory.create(NAME, uniques.size() + 1, List.of("urusan_id", "id")));
 		}
 		return uniques;
 	}

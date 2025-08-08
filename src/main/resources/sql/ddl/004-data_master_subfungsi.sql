@@ -14,7 +14,7 @@ create or replace table data_master_subfungsi (
 	is_deleted bit(1)       not null,
 	deleted_at datetime     null,
 	deleted_by char(18)     null,
-	fungsi_id  char(5)      not null,
+	fungsi_id  char(2)      not null,
 	constraint ck_data_master_subfungsi_01 check (id = code),
 	constraint ck_data_master_subfungsi_02 check (fungsi_id is null or (left(id, length(fungsi_id)) = fungsi_id)),
 	constraint fk_data_master_subfungsi_01 foreign key (locked_by) references data_user (id),

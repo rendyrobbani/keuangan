@@ -1,4 +1,4 @@
-package com.rendyrobbani.keuangan.application.core.factory.master;
+package com.rendyrobbani.keuangan.application.core.factory.master.subfungsi;
 
 import com.rendyrobbani.keuangan.common.classification.subfungsi.SubfungsiClassification;
 import com.rendyrobbani.keuangan.common.vo.nip.Nip;

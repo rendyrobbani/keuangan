@@ -27,7 +27,6 @@ public final class LockableTable {
 		return columns;
 	}
 
-
 	public static List<ForeignKeyConstraint> getForeignKeys(String tableName, Integer index) {
 		var foreignKeys = new ArrayList<ForeignKeyConstraint>();
 		foreignKeys.add(ForeignKeyConstraintFactory.create(
