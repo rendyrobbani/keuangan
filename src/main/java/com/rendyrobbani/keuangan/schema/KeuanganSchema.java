@@ -49,7 +49,7 @@ public final class KeuanganSchema {
 			for (var table : getTables()) {
 				index++;
 
-				var fileName = NumberUtil.lpadZero(index, 3) + ". " + table.getName() + ".sql";
+				var fileName = NumberUtil.lpadZero(index, 3) + "-" + table.getName() + ".sql";
 				var file = new File(location, fileName);
 				try (var output = new FileOutputStream(file)) {
 					output.write(table.getDeleteDDL().getBytes(StandardCharsets.UTF_8));
