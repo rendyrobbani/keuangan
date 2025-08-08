@@ -6,4 +6,8 @@ public interface Constraint {
 
 	String getValue();
 
+	default String getNameAndValue() {
+		return "constraint " + this.getName() + " " + this.getValue();
+	}
+
 }

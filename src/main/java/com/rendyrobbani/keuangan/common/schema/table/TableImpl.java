@@ -1,7 +1,8 @@
 package com.rendyrobbani.keuangan.common.schema.table;
 
 import com.rendyrobbani.keuangan.common.schema.column.Column;
-import com.rendyrobbani.keuangan.common.schema.constraint.Constraint;
+import com.rendyrobbani.keuangan.common.schema.constraint.check.CheckConstraint;
+import com.rendyrobbani.keuangan.common.schema.constraint.check.PrimaryConstraint;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -16,6 +17,8 @@ public final class TableImpl implements Table {
 
 	private final List<Column> columns;
 
-	private final List<Constraint> checks;
+	private final PrimaryConstraint primary;
+
+	private final List<CheckConstraint> checks;
 
 }
