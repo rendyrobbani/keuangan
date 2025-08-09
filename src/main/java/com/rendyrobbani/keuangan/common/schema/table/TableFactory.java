@@ -21,7 +21,7 @@ public final class TableFactory {
 		return new TableImpl(
 				name,
 				columns,
-				PrimaryConstraintFactory.create(columns.stream().filter(Column::isPrimaryKey).map(Column::getName).toList()),
+				PrimaryConstraintFactory.create(columns.stream().filter(Column::isPrimaryKey).map(Column::name).toList()),
 				checks,
 				foreignKeys,
 				uniques

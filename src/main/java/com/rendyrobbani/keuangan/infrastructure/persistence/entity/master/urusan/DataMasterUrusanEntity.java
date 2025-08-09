@@ -36,8 +36,8 @@ public class DataMasterUrusanEntity extends DataMasterEntity implements DataMast
 	public DataMasterUrusanEntity(LocalDateTime createdAt, Nip createdBy, UrusanClassification classification) {
 		this.createdAt = createdAt;
 		this.createdBy = createdBy;
-		this.id = classification.getUrusanCode().replaceAll("X", "0");
-		this.code = classification.getUrusanCode();
+		this.id = classification.urusanCode().replaceAll("X", "0");
+		this.code = classification.urusanCode();
 
 		this.isLocked = false;
 		this.isDeleted = false;

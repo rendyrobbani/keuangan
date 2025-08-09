@@ -16,12 +16,12 @@ public interface DataMasterUrusanReferencing {
 
 	default String getUrusanName() {
 		if (this.getUrusan() == null) return null;
-		return this.getUrusan().getName();
+		return this.getUrusan().name();
 	}
 
 	default String getUrusanName(boolean uppercase) {
 		if (this.getUrusan() == null) return null;
-		return this.getUrusan().getName(uppercase);
+		return this.getUrusan().name(uppercase);
 	}
 
 }

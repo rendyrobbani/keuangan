@@ -2,9 +2,9 @@ package com.rendyrobbani.keuangan.common.schema.column;
 
 public interface Column {
 
-	String getName();
+	String name();
 
-	String getSize();
+	String size();
 
 	boolean isNullable();
 
@@ -12,10 +12,10 @@ public interface Column {
 
 	boolean isAutoIncrement();
 
-	ColumnType getType();
+	ColumnType type();
 
-	default String getTypeAndSize() {
-		return this.getType().getDataType() + this.getSize();
+	default String typeAndSize() {
+		return this.type().getDataType() + this.size();
 	}
 
 }

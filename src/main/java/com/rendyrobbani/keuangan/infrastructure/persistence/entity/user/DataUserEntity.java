@@ -38,12 +38,12 @@ public class DataUserEntity extends BaseUserEntity implements DataUser, DataUser
 		this.createdBy = createdBy;
 		this.nip = nip;
 
-		this.id = nip.getValue();
+		this.id = nip.value();
 
-		this.birthDate = nip.getBirthDate();
-		this.startDate = nip.getStartDate();
-		this.gender = nip.getGender();
-		this.number = nip.getNumber();
+		this.birthDate = nip.birthDate();
+		this.startDate = nip.startDate();
+		this.gender = nip.gender();
+		this.number = nip.number();
 
 		this.isLocked = false;
 		this.isDeleted = false;

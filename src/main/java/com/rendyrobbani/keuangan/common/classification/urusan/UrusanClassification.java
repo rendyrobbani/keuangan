@@ -4,6 +4,6 @@ public interface UrusanClassification {
 
 	String REGEX = "^(?!0)(X|\\d)$";
 
-	String getUrusanCode();
+	String urusanCode();
 
 }

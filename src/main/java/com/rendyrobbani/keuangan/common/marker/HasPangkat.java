@@ -4,16 +4,16 @@ import com.rendyrobbani.keuangan.common.vo.Pangkat;
 
 public interface HasPangkat {
 
-	Pangkat getPangkat();
+	Pangkat pangkat();
 
-	default String getPangkatValue() {
-		if (this.getPangkat() == null) return null;
-		return this.getPangkat().getValue();
+	default String pangkatValue() {
+		if (this.pangkat() == null) return null;
+		return this.pangkat().value();
 	}
 
-	default String getPangkatTitle() {
-		if (this.getPangkat() == null) return null;
-		return this.getPangkat().getTitle();
+	default String pangkatTitle() {
+		if (this.pangkat() == null) return null;
+		return this.pangkat().title();
 	}
 
 }

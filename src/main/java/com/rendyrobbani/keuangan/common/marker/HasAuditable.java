@@ -6,18 +6,18 @@ import java.time.LocalDateTime;
 
 public interface HasAuditable {
 
-	LocalDateTime getCreatedAt();
+	LocalDateTime createdAt();
 
-	Nip getCreatedBy();
+	Nip createdBy();
 
-	LocalDateTime getUpdatedAt();
+	LocalDateTime updatedAt();
 
-	Nip getUpdatedBy();
+	Nip updatedBy();
 
 	boolean isDeleted();
 
-	LocalDateTime getDeletedAt();
+	LocalDateTime deletedAt();
 
-	Nip getDeletedBy();
+	Nip deletedBy();
 
 }

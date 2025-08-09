@@ -3,8 +3,10 @@ package com.rendyrobbani.keuangan.common.vo;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.Accessors;
 
 @Getter
+@Accessors(fluent = true)
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public enum Gender {
 	LAKI_LAKI(1, "Laki-laki"),
@@ -15,7 +17,7 @@ public enum Gender {
 	private final String label;
 
 	public static Gender fromValue(Integer value) {
-		if (value != null) for (var e : values()) if (e.getValue().equals(value)) return e;
+		if (value != null) for (var e : values()) if (e.value().equals(value)) return e;
 		return null;
 	}
 

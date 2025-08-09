@@ -6,20 +6,20 @@ import java.util.List;
 
 public interface ForeignKeyConstraint extends Constraint {
 
-	List<String> getColumnNames();
+	List<String> columnNames();
 
-	String getReferenceTableName();
+	String referenceTableName();
 
-	List<String> getReferenceColumnNames();
+	List<String> referenceColumnNames();
 
 	@Override
-	default String getValue() {
+	default String value() {
 		return String.join(" ",
 				"foreign key",
-				"(" + String.join(", ", getColumnNames()) + ")",
+				"(" + String.join(", ", columnNames()) + ")",
 				"references",
-				getReferenceTableName(),
-				"(" + String.join(", ", getReferenceColumnNames()) + ")"
+				referenceTableName(),
+				"(" + String.join(", ", referenceColumnNames()) + ")"
 		);
 	}
 

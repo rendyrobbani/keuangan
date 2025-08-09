@@ -7,15 +7,15 @@ import java.util.List;
 public interface PrimaryConstraint extends Constraint {
 
 	@Override
-	default String getName() {
+	default String name() {
 		return "PRIMARY";
 	}
 
-	List<String> getColumnNames();
+	List<String> columnNames();
 
 	@Override
-	default String getValue() {
-		return "primary key (" + String.join(", ", this.getColumnNames()) + ")";
+	default String value() {
+		return "primary key (" + String.join(", ", this.columnNames()) + ")";
 	}
 
 }

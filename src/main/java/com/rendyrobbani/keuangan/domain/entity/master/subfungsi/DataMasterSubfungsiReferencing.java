@@ -16,12 +16,12 @@ public interface DataMasterSubfungsiReferencing {
 
 	default String getSubfungsiName() {
 		if (this.getSubfungsi() == null) return null;
-		return this.getSubfungsi().getName();
+		return this.getSubfungsi().name();
 	}
 
 	default String getSubfungsiName(boolean uppercase) {
 		if (this.getSubfungsi() == null) return null;
-		return this.getSubfungsi().getName(uppercase);
+		return this.getSubfungsi().name(uppercase);
 	}
 
 }

@@ -9,7 +9,8 @@ public final class SubfungsiClassificationFactory {
 	public static SubfungsiClassification classify(String code) {
 		if (code == null) return null;
 		if (!code.matches(SubfungsiClassification.REGEX)) return null;
-		return new SubfungsiClassificationImpl(code.split("\\."));
+		var codes = code.split("\\.");
+		return new SubfungsiClassificationImpl(codes[0], codes[1]);
 	}
 
 	public static SubfungsiClassification classifyFromKegiatanCode(String code) {

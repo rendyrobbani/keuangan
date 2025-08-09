@@ -16,12 +16,12 @@ public interface DataMasterBidangReferencing {
 
 	default String getBidangName() {
 		if (this.getBidang() == null) return null;
-		return this.getBidang().getName();
+		return this.getBidang().name();
 	}
 
 	default String getBidangName(boolean uppercase) {
 		if (this.getBidang() == null) return null;
-		return this.getBidang().getName(uppercase);
+		return this.getBidang().name(uppercase);
 	}
 
 }

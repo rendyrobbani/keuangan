@@ -3,21 +3,21 @@ package com.rendyrobbani.keuangan.common.marker;
 public interface HasNameAndTitle extends HasName {
 
 	@Override
-	default String getName(boolean uppercase) {
-		if (this.getName() == null) return null;
-		if (uppercase) return this.getName().toUpperCase().replace("HJ.", "Hj.");
-		return this.getName();
+	default String name(boolean uppercase) {
+		if (this.name() == null) return null;
+		if (uppercase) return this.name().toUpperCase().replace("HJ.", "Hj.");
+		return this.name();
 	}
 
-	String getTitlePrefix();
+	String titlePrefix();
 
-	String getTitleSuffix();
+	String titleSuffix();
 
 	default String getFullName(boolean uppercase) {
-		if (this.getName() == null) return null;
-		var fullName = this.getName(uppercase);
-		if (this.getTitlePrefix() != null) fullName = this.getTitlePrefix() + " " + fullName;
-		if (this.getTitleSuffix() != null) fullName = fullName + ", " + this.getTitleSuffix();
+		if (this.name() == null) return null;
+		var fullName = this.name(uppercase);
+		if (this.titlePrefix() != null) fullName = this.titlePrefix() + " " + fullName;
+		if (this.titleSuffix() != null) fullName = fullName + ", " + this.titleSuffix();
 		return fullName;
 	}
 

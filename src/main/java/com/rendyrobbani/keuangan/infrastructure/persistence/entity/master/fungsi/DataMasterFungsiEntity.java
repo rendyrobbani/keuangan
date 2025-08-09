@@ -36,8 +36,8 @@ public class DataMasterFungsiEntity extends DataMasterEntity implements DataMast
 	public DataMasterFungsiEntity(LocalDateTime createdAt, Nip createdBy, FungsiClassification classification) {
 		this.createdAt = createdAt;
 		this.createdBy = createdBy;
-		this.id = classification.getFungsiCode();
-		this.code = classification.getFungsiCode();
+		this.id = classification.fungsiCode();
+		this.code = classification.fungsiCode();
 
 		this.isLocked = false;
 		this.isDeleted = false;

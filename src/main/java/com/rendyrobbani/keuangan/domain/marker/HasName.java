@@ -1,4 +1,4 @@
-package com.rendyrobbani.keuangan.common.marker;
+package com.rendyrobbani.keuangan.domain.marker;
 
 public interface HasName {
 

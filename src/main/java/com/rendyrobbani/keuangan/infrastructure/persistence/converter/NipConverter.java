@@ -11,7 +11,7 @@ public final class NipConverter implements AttributeConverter<Nip, String> {
 	@Override
 	public String convertToDatabaseColumn(Nip nip) {
 		if (nip == null) return null;
-		return nip.getValue();
+		return nip.value();
 	}
 
 	@Override

@@ -29,7 +29,7 @@ public final class LogsUserTable {
 		if (columns == null) {
 			columns = new ArrayList<>();
 			columns.add(ColumnFactory.createBigInt("id", false, true, true));
-			columns.addAll(DataUserTable.getTable().getColumns().stream().filter(c -> !c.isPrimaryKey()).toList());
+			columns.addAll(DataUserTable.getTable().columns().stream().filter(c -> !c.isPrimaryKey()).toList());
 
 			columns.addAll(LoggableTable.getColumns());
 			columns.add(ColumnFactory.copyOf("subject_id", DataUserTable.getTable().findColumn("id"), false));

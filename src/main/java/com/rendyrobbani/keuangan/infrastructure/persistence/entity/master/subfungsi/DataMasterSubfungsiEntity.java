@@ -41,13 +41,13 @@ public class DataMasterSubfungsiEntity extends DataMasterEntity implements DataM
 	public DataMasterSubfungsiEntity(LocalDateTime createdAt, Nip createdBy, SubfungsiClassification classification) {
 		this.createdAt = createdAt;
 		this.createdBy = createdBy;
-		this.id = classification.getSubfungsiCode();
-		this.code = classification.getSubfungsiCode();
+		this.id = classification.subfungsiCode();
+		this.code = classification.subfungsiCode();
 
 		this.isLocked = false;
 		this.isDeleted = false;
 
-		this.fungsiId = classification.getFungsiCode();
+		this.fungsiId = classification.fungsiCode();
 	}
 
 }

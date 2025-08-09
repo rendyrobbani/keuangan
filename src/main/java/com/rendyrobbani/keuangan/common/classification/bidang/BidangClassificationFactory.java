@@ -9,7 +9,8 @@ public final class BidangClassificationFactory {
 	public static BidangClassification classify(String code) {
 		if (code == null) return null;
 		if (!code.matches(BidangClassification.REGEX)) return null;
-		return new BidangClassificationImpl(code.split("\\."));
+		var codes = code.split("\\.");
+		return new BidangClassificationImpl(codes[0], codes[1]);
 	}
 
 }

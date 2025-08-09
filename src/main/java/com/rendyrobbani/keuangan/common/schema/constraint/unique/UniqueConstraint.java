@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface UniqueConstraint extends Constraint {
 
-	List<String> getColumnNames();
+	List<String> columnNames();
 
 	@Override
-	default String getValue() {
-		return "Unique key (" + String.join(", ", this.getColumnNames()) + ")";
+	default String value() {
+		return "Unique key (" + String.join(", ", this.columnNames()) + ")";
 	}
 
 }

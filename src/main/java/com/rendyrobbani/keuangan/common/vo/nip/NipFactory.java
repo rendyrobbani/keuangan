@@ -9,7 +9,6 @@ import java.time.format.DateTimeFormatter;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class NipFactory {
-
 	private static DateTimeFormatter formatter;
 
 	private static DateTimeFormatter getFormatter() {
@@ -55,14 +54,12 @@ public final class NipFactory {
 		var valueOfGender = value.substring(getMapOfGender()[0], getMapOfGender()[1]);
 		var valueOfNumber = value.substring(getMapOfNumber()[0], getMapOfNumber()[1]);
 
-		return new NipImpl(
-				value,
-				String.join(" ", valueOfBirthDate, valueOfStartDate, valueOfGender, valueOfNumber),
-				LocalDate.parse(valueOfBirthDate, getFormatter()),
-				valueOfStartDate.endsWith("21") ? null : LocalDate.parse(valueOfStartDate + "01", getFormatter()),
-				Gender.fromValue(valueOfGender),
-				Integer.valueOf(valueOfNumber)
+		return new NipImpl(value,
+		                   String.join(" ", valueOfBirthDate, valueOfStartDate, valueOfGender, valueOfNumber),
+		                   LocalDate.parse(valueOfBirthDate, getFormatter()),
+		                   valueOfStartDate.endsWith("21") ? null : LocalDate.parse(valueOfStartDate + "01", getFormatter()),
+		                   Gender.fromValue(valueOfGender),
+		                   Integer.valueOf(valueOfNumber)
 		);
 	}
-
 }

@@ -8,16 +8,16 @@ public interface Nip {
 
 	String REGEX = "^(19[0-9]{2}|20[0-9]{2})(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])(19[0-9]{2}|20[0-9]{2})(0[1-9]|1[0-2]|21)([12])(00[1-9]|[0-9][1-9][0-9]|[1-9][0-9][0-9])$";
 
-	String getValue();
+	String value();
 
-	String getFormatted();
+	String formatted();
 
-	LocalDate getBirthDate();
+	LocalDate birthDate();
 
-	LocalDate getStartDate();
+	LocalDate startDate();
 
-	Gender getGender();
+	Gender gender();
 
-	Integer getNumber();
+	Integer number();
 
 }

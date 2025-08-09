@@ -15,24 +15,24 @@ public interface Table {
 	String CHARSET = "utf8mb4";
 	String COLLATE = "utf8mb4_unicode_ci";
 
-	String getName();
+	String name();
 
-	List<Column> getColumns();
+	List<Column> columns();
 
-	PrimaryConstraint getPrimary();
+	PrimaryConstraint primary();
 
-	List<CheckConstraint> getChecks();
+	List<CheckConstraint> checks();
 
-	List<ForeignKeyConstraint> getForeignKeys();
+	List<ForeignKeyConstraint> foreignKeys();
 
-	List<UniqueConstraint> getUniques();
+	List<UniqueConstraint> uniques();
 
 	default Column findColumn(String name) {
-		return this.getColumns().stream().filter(c -> c.getName().equals(name)).findFirst().orElse(null);
+		return this.columns().stream().filter(c -> c.name().equals(name)).findFirst().orElse(null);
 	}
 
 	default String getDeleteDDL(boolean useIfExists) {
-		return String.join(" ", "drop table" + (useIfExists ? " if exists" : ""), this.getName()) + ";";
+		return String.join(" ", "drop table" + (useIfExists ? " if exists" : ""), this.name()) + ";";
 	}
 
 	default String getDeleteDDL() {
@@ -41,24 +41,24 @@ public interface Table {
 
 	default String getCreateDDL(boolean useOrReplace) {
 		List<String> ddl = new ArrayList<>();
-		ddl.add("create " + (useOrReplace ? "or replace " : "") + "table " + this.getName() + " (");
+		ddl.add("create " + (useOrReplace ? "or replace " : "") + "table " + this.name() + " (");
 		int maxName = 0;
 		int maxType = 0;
-		for (var column : this.getColumns()) {
-			maxName = Math.max(maxName, column.getName().length());
-			maxType = Math.max(maxType, column.getTypeAndSize().length());
+		for (var column : this.columns()) {
+			maxName = Math.max(maxName, column.name().length());
+			maxType = Math.max(maxType, column.typeAndSize().length());
 		}
-		for (var column : this.getColumns()) {
-			var name = column.getName() + " ".repeat(maxName - column.getName().length());
-			var type = column.getTypeAndSize() + " ".repeat(maxType - column.getTypeAndSize().length());
+		for (var column : this.columns()) {
+			var name = column.name() + " ".repeat(maxName - column.name().length());
+			var type = column.typeAndSize() + " ".repeat(maxType - column.typeAndSize().length());
 			var attr = column.isNullable() ? "null" : "not null";
 			if (column.isAutoIncrement()) attr += " auto_increment";
 			ddl.add("\t" + String.join(" ", name, type, attr) + ",");
 		}
-		if (getChecks() != null) for (var c : this.getChecks()) ddl.add("\t" + c.getNameAndValue() + ",");
-		if (getForeignKeys() != null) for (var c : this.getForeignKeys()) ddl.add("\t" + c.getNameAndValue() + ",");
-		if (getUniques() != null) for (var c : this.getUniques()) ddl.add("\t" + c.getNameAndValue() + ",");
-		ddl.add("\t" + this.getPrimary().getValue());
+		if (checks() != null) for (var c : this.checks()) ddl.add("\t" + c.nameAndValue() + ",");
+		if (foreignKeys() != null) for (var c : this.foreignKeys()) ddl.add("\t" + c.nameAndValue() + ",");
+		if (uniques() != null) for (var c : this.uniques()) ddl.add("\t" + c.nameAndValue() + ",");
+		ddl.add("\t" + this.primary().value());
 		ddl.add(") engine = " + ENGINE);
 		ddl.add("  charset = " + CHARSET);
 		ddl.add("  collate = " + COLLATE + ";");

@@ -5,16 +5,18 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ColumnFactory {
-
 	public static Column create(String name, String size, ColumnType type, boolean isNullable, boolean isPrimaryKey, boolean isAutoIncrement) {
 		size = size == null ? "" : size.trim();
 		if (size.startsWith("(")) size = size.substring(1);
 		if (size.endsWith(")")) size = size.substring(0, size.length() - 1);
+		isAutoIncrement = isAutoIncrement && type.getJavaType().equals(Long.class);
+		isPrimaryKey = isPrimaryKey || isAutoIncrement;
+		isNullable = isNullable && !isPrimaryKey;
 		return new ColumnImpl(name, size.isBlank() ? size : "(" + size + ")", type, isNullable, isPrimaryKey, isAutoIncrement);
 	}
 
 	public static Column copyOf(String name, Column column, boolean isNullable, boolean isPrimaryKey) {
-		return create(name, column.getSize(), column.getType(), isNullable, isPrimaryKey, false);
+		return create(name, column.size(), column.type(), isNullable, isPrimaryKey, false);
 	}
 
 	public static Column copyOf(String name, Column column, boolean isNullable) {
@@ -196,5 +198,4 @@ public final class ColumnFactory {
 	public static Column createBidangCode(String name, boolean isNullable) {
 		return createBidangCode(name, isNullable, false);
 	}
-
 }

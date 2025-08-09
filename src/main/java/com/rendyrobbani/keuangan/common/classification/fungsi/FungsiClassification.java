@@ -4,6 +4,6 @@ public interface FungsiClassification {
 
 	String REGEX = "^\\d{2}$";
 
-	String getFungsiCode();
+	String fungsiCode();
 
 }

@@ -4,11 +4,11 @@ import com.rendyrobbani.keuangan.common.schema.constraint.Constraint;
 
 public interface CheckConstraint extends Constraint {
 
-	String getLogic();
+	String logic();
 
 	@Override
-	default String getValue() {
-		return "check (" + this.getLogic() + ")";
+	default String value() {
+		return "check (" + this.logic() + ")";
 	}
 
 }

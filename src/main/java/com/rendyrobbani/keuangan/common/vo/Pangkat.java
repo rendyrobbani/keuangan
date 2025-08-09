@@ -4,8 +4,10 @@ import com.rendyrobbani.keuangan.common.util.number.NumberUtil;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.Accessors;
 
 @Getter
+@Accessors(fluent = true)
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public enum Pangkat {
 	PNS_1A("1A", "Juru Muda"),
@@ -61,22 +63,22 @@ public enum Pangkat {
 		return this.value.matches(REGEX_P3K);
 	}
 
-	private String getRoman(String separator) {
+	private String roman(String separator) {
 		if (this.isP3K()) return "";
 		separator = separator != null ? separator : DEFAULT_SEPARATOR;
-		return " (" + NumberUtil.toRoman(this.getValue().substring(0, 1)) + separator + this.getValue().substring(1).toLowerCase() + ")";
+		return " (" + NumberUtil.toRoman(this.value().substring(0, 1)) + separator + this.value().substring(1).toLowerCase() + ")";
 	}
 
-	public String getTitle(String separator) {
-		return this.getLabel() + this.getRoman(separator);
+	public String title(String separator) {
+		return this.label() + this.roman(separator);
 	}
 
-	public String getTitle() {
-		return this.getTitle(null);
+	public String title() {
+		return this.title(null);
 	}
 
 	public static Pangkat fromValue(String value) {
-		if (value != null) for (var e : values()) if (e.getValue().equals(value)) return e;
+		if (value != null) for (var e : values()) if (e.value().equals(value)) return e;
 		return null;
 	}
 }

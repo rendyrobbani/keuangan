@@ -16,12 +16,12 @@ public interface DataMasterFungsiReferencing {
 
 	default String getFungsiName() {
 		if (this.getFungsi() == null) return null;
-		return this.getFungsi().getName();
+		return this.getFungsi().name();
 	}
 
 	default String getFungsiName(boolean uppercase) {
 		if (this.getFungsi() == null) return null;
-		return this.getFungsi().getName(uppercase);
+		return this.getFungsi().name(uppercase);
 	}
 
 }
