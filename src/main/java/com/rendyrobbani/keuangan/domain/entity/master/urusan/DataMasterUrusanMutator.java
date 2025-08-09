@@ -1,8 +1,7 @@
 package com.rendyrobbani.keuangan.domain.entity.master.urusan;
 
-import com.rendyrobbani.keuangan.common.marker.HasAuditMutatorSupport;
-import com.rendyrobbani.keuangan.common.marker.HasLockMutatorSupport;
+import com.rendyrobbani.keuangan.domain.entity.master.DataMasterMutator;
 
-public interface DataMasterUrusanMutator extends DataMasterUrusan, HasLockMutatorSupport, HasAuditMutatorSupport {
+public interface DataMasterUrusanMutator extends DataMasterUrusan, DataMasterMutator<String> {
 
 }

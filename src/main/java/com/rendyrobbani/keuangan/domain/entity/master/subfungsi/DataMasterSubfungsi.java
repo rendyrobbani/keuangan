@@ -1,11 +1,9 @@
 package com.rendyrobbani.keuangan.domain.entity.master.subfungsi;
 
 import com.rendyrobbani.keuangan.common.marker.HasClassification;
-import com.rendyrobbani.keuangan.domain.entity.master.fungsi.DataMasterFungsiReferencing;
+import com.rendyrobbani.keuangan.domain.entity.master.DataMaster;
 
-public interface DataMasterSubfungsi extends HasClassification, DataMasterFungsiReferencing {
-
-	String getId();
+public interface DataMasterSubfungsi extends DataMaster<String>, HasClassification {
 
 	@Override
 	default String getCode() {
