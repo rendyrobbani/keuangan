@@ -2,6 +2,8 @@ package com.rendyrobbani.keuangan.schema;
 
 import com.rendyrobbani.keuangan.common.schema.table.Table;
 import com.rendyrobbani.keuangan.common.util.number.NumberUtil;
+import com.rendyrobbani.keuangan.schema.table.master.bidang.DataMasterBidangTable;
+import com.rendyrobbani.keuangan.schema.table.master.bidang.SipdMasterBidangTable;
 import com.rendyrobbani.keuangan.schema.table.master.fungsi.DataMasterFungsiTable;
 import com.rendyrobbani.keuangan.schema.table.master.subfungsi.DataMasterSubfungsiTable;
 import com.rendyrobbani.keuangan.schema.table.master.urusan.DataMasterUrusanTable;
@@ -34,7 +36,8 @@ public final class KeuanganSchema {
 
 		tables.add(DataMasterUrusanTable.getTable());
 		tables.add(SipdMasterUrusanTable.getTable());
-//		tables.add(DataMasterBidangTable.getTable());
+		tables.add(DataMasterBidangTable.getTable());
+		tables.add(SipdMasterBidangTable.getTable());
 		return tables;
 	}
 
