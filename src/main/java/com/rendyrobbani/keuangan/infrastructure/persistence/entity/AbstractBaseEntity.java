@@ -19,8 +19,9 @@ import java.time.LocalDateTime;
 @Accessors(chain = false, fluent = true)
 @NoArgsConstructor
 @MappedSuperclass
-public abstract class AbstractBaseEntity<ID, DOMAIN> implements BaseEntity<ID, DOMAIN>,
-                                                                Serializable {
+@SuppressWarnings("unchecked")
+public abstract class AbstractBaseEntity<ID, DOMAIN, ENTITY extends DOMAIN> implements BaseEntity<ID, DOMAIN, ENTITY>,
+                                                                                       Serializable {
 
 	@Serial
 	private static final long serialVersionUID = 1L;
@@ -33,10 +34,10 @@ public abstract class AbstractBaseEntity<ID, DOMAIN> implements BaseEntity<ID, D
 	protected Nip createdBy;
 
 	@Override
-	public AbstractBaseEntity<ID, DOMAIN> create(LocalDateTime createdAt, Nip createdBy) {
+	public ENTITY create(LocalDateTime createdAt, Nip createdBy) {
 		this.createdAt = createdAt;
 		this.createdBy = createdBy;
-		return this;
+		return (ENTITY) this;
 	}
 
 }

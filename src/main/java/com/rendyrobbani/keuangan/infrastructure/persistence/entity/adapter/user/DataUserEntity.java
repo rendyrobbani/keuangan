@@ -30,4 +30,6 @@ public class DataUserEntity extends AbstractUserEntity<String, DataUser> impleme
 		return this;
 	}
 
+
+
 }

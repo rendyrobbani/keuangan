@@ -5,10 +5,12 @@ import com.rendyrobbani.keuangan.domain.model.vo.Nip;
 
 import java.time.LocalDateTime;
 
-public interface BaseEntity<ID, DOMAIN> extends Base<ID> {
+public interface BaseEntity<ID, DOMAIN, ENTITY extends DOMAIN> extends Base<ID> {
 
 	DOMAIN toDomain();
 
-	BaseEntity<ID, DOMAIN> create(LocalDateTime createdAt, Nip createdBy);
+//	BaseEntity<ID, DOMAIN> create(LocalDateTime createdAt, Nip createdBy);
+
+	ENTITY create(LocalDateTime createdAt, Nip createdBy);
 
 }
