@@ -7,7 +7,7 @@ import com.rendyrobbani.keuangan.domain.model.vo.Pangkat;
 import com.rendyrobbani.keuangan.infrastructure.persistence.converter.GenderConverter;
 import com.rendyrobbani.keuangan.infrastructure.persistence.converter.NipConverter;
 import com.rendyrobbani.keuangan.infrastructure.persistence.converter.PangkatConverter;
-import com.rendyrobbani.keuangan.infrastructure.persistence.entity.AbstractEntity;
+import com.rendyrobbani.keuangan.infrastructure.persistence.entity.AbstractDataEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.MappedSuperclass;
@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @MappedSuperclass
-public abstract class AbstractUserEntity<ID> extends AbstractEntity<ID> implements User {
+public abstract class AbstractUserEntity<ID, DOMAIN> extends AbstractDataEntity<ID, DOMAIN> implements User {
 
 	@Convert(converter = PangkatConverter.class)
 	@Column(name = "pangkat")
@@ -71,29 +71,5 @@ public abstract class AbstractUserEntity<ID> extends AbstractEntity<ID> implemen
 	@Convert(converter = NipConverter.class)
 	@Column(name = "locked_by")
 	protected Nip lockedBy;
-
-	@Column(name = "created_at")
-	protected LocalDateTime createdAt;
-
-	@Convert(converter = NipConverter.class)
-	@Column(name = "created_by")
-	protected Nip createdBy;
-
-	@Column(name = "updated_at")
-	protected LocalDateTime updatedAt;
-
-	@Convert(converter = NipConverter.class)
-	@Column(name = "updated_by")
-	protected Nip updatedBy;
-
-	@Column(name = "is_deleted")
-	protected boolean isDeleted;
-
-	@Column(name = "deleted_at")
-	protected LocalDateTime deletedAt;
-
-	@Convert(converter = NipConverter.class)
-	@Column(name = "deleted_by")
-	protected Nip deletedBy;
 
 }

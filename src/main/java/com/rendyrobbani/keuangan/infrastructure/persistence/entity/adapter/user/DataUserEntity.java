@@ -15,7 +15,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Entity
 @Table(name = "data_user")
-public class DataUserEntity extends AbstractUserEntity<String> implements DataUser {
+public class DataUserEntity extends AbstractUserEntity<String, DataUser> implements DataUser {
 
 	@Id
 	@Column(name = "id")
@@ -24,5 +24,10 @@ public class DataUserEntity extends AbstractUserEntity<String> implements DataUs
 	@Convert(converter = NipConverter.class)
 	@Column(name = "id", insertable = false, updatable = false)
 	private Nip nip;
+
+	@Override
+	public DataUser toDomain() {
+		return this;
+	}
 
 }

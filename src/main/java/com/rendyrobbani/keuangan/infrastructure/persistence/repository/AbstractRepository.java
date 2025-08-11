@@ -1,6 +1,6 @@
 package com.rendyrobbani.keuangan.infrastructure.persistence.repository;
 
-import com.rendyrobbani.keuangan.domain.model.entity.Data;
+import com.rendyrobbani.keuangan.domain.model.entity.Base;
 import com.rendyrobbani.keuangan.domain.model.vo.Nip;
 import com.rendyrobbani.keuangan.domain.port.outgoing.repository.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class AbstractRepository<ID, DOMAIN extends Data<ID>, ENTITY extends DOMAIN> implements Repository<ID, DOMAIN> {
+public abstract class AbstractRepository<ID, DOMAIN extends Base<ID>, ENTITY extends DOMAIN> implements Repository<ID, DOMAIN> {
 
 	protected abstract JpaRepository<ENTITY, ID> repository();
 
