@@ -4,7 +4,7 @@ import com.rendyrobbani.keuangan.domain.model.vo.Nip;
 
 import java.time.LocalDateTime;
 
-public interface BaseMapper<DOMAIN, ENTITY extends DOMAIN> {
+public interface BaseMapper<ENTITY extends DOMAIN, DOMAIN> {
 
 	ENTITY create(DOMAIN domain, LocalDateTime createdAt, Nip createdBy);
 

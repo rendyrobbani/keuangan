@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class DataUserEntityMapper implements DataMapper<DataUser, DataUserEntity> {
+public final class DataUserEntityMapper implements DataMapper<DataUserEntity, DataUser> {
 
 	private static DataUserEntityMapper instance;
 

@@ -1,0 +1,40 @@
+package com.rendyrobbani.keuangan.schema.base;
+
+import com.rendyrobbani.keuangan.common.schema.column.Column;
+import com.rendyrobbani.keuangan.common.schema.column.ColumnFactory;
+import com.rendyrobbani.keuangan.common.schema.constraint.foreign.ForeignKeyConstraint;
+import com.rendyrobbani.keuangan.common.schema.constraint.foreign.ForeignKeyConstraintFactory;
+import com.rendyrobbani.keuangan.schema.user.UserTable;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@SuppressWarnings("ConstantValue")
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class LockTable {
+
+	private static List<Column> columns;
+
+	public static List<Column> getColumns() {
+		if (columns == null) {
+			columns = new ArrayList<>();
+			columns.add(ColumnFactory.createBoolean("is_locked", false));
+			columns.add(ColumnFactory.createDateTime("locked_at", true));
+			columns.add(ColumnFactory.createNip("locked_by", true));
+		}
+		return columns;
+	}
+
+	private static List<ForeignKeyConstraint> foreignKeys;
+
+	public static List<ForeignKeyConstraint> getForeignKeys(String tableName, int index) {
+		if (foreignKeys == null) {
+			foreignKeys = new ArrayList<>();
+			foreignKeys.add(ForeignKeyConstraintFactory.create(tableName, foreignKeys.size() + index, "locked_by", UserTable.NAME, "id"));
+		}
+		return foreignKeys;
+	}
+
+}

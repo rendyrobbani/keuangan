@@ -4,7 +4,7 @@ import com.rendyrobbani.keuangan.domain.model.entity.user.DataUser;
 import com.rendyrobbani.keuangan.domain.port.outgoing.repository.CreateRepository;
 import com.rendyrobbani.keuangan.domain.port.outgoing.repository.SelectRepository;
 
-public interface DataUserRepository extends SelectRepository<String, DataUser>,
+public interface DataUserRepository extends SelectRepository<DataUser, String>,
                                             CreateRepository<DataUser> {
 
 }

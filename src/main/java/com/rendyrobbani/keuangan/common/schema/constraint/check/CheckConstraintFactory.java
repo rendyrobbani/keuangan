@@ -1,9 +1,9 @@
 package com.rendyrobbani.keuangan.common.schema.constraint.check;
 
 import com.rendyrobbani.keuangan.common.util.number.NumberUtil;
-import com.rendyrobbani.keuangan.common.vo.Gender;
-import com.rendyrobbani.keuangan.common.vo.Pangkat;
-import com.rendyrobbani.keuangan.common.vo.Nip;
+import com.rendyrobbani.keuangan.domain.model.vo.Gender;
+import com.rendyrobbani.keuangan.domain.model.vo.Nip;
+import com.rendyrobbani.keuangan.domain.model.vo.Pangkat;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -135,15 +135,15 @@ public final class CheckConstraintFactory {
 		return columnRegex(tableName, index, columnName, Nip.REGEX);
 	}
 
-	public static CheckConstraint columnPangkat(String tableName,
-	                                            Integer index,
-	                                            String columnName) {
+	public static CheckConstraint columnIsPangkat(String tableName,
+	                                              Integer index,
+	                                              String columnName) {
 		return columnRegex(tableName, index, columnName, Pangkat.REGEX_PNS + "|" + Pangkat.REGEX_P3K);
 	}
 
-	public static CheckConstraint columnGender(String tableName,
-	                                           Integer index,
-	                                           String columnName) {
+	public static CheckConstraint columnIsGender(String tableName,
+	                                             Integer index,
+	                                             String columnName) {
 		return columnIn(tableName, index, columnName, Arrays.stream(Gender.values()).map(Gender::value).toArray(Integer[]::new));
 	}
 

@@ -9,9 +9,9 @@ import com.rendyrobbani.keuangan.domain.model.vo.Pangkat;
 
 import java.time.LocalDate;
 
-public interface Pegawai extends HasNip,
-                                 HasPangkat,
-                                 HasNameAndTitles {
+public interface MasterPegawai extends HasNip,
+                                       HasPangkat,
+                                       HasNameAndTitles {
 
 	@Override
 	Nip nip();

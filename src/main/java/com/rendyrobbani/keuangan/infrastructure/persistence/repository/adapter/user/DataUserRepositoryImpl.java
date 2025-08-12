@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class DataUserRepositoryImpl implements DataUserRepository,
-                                               SelectRepositoryOperation<String, DataUser, DataUserEntity>,
-                                               CreateRepositoryOperation<String, DataUser, DataUserEntity> {
+                                               SelectRepositoryOperation<DataUserEntity, DataUser, String>,
+                                               CreateRepositoryOperation<DataUserEntity, DataUser, String> {
 
 	private final DataUserJpaRepository repository;
 
@@ -27,7 +27,7 @@ public class DataUserRepositoryImpl implements DataUserRepository,
 	}
 
 	@Override
-	public BaseMapper<DataUser, DataUserEntity> mapper() {
+	public BaseMapper<DataUserEntity, DataUser> mapper() {
 		return DataUserEntityMapper.getInstance();
 	}
 

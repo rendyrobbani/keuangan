@@ -4,10 +4,10 @@ import com.rendyrobbani.keuangan.domain.model.entity.Base;
 import com.rendyrobbani.keuangan.infrastructure.persistence.mapper.BaseMapper;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BaseRepository<ID, DOMAIN extends Base<ID>, ENTITY extends DOMAIN> {
+public interface BaseRepository<ENTITY extends DOMAIN, DOMAIN extends Base<ID>, ID> {
 
 	JpaRepository<ENTITY, ID> repository();
 
-	BaseMapper<DOMAIN, ENTITY> mapper();
+	BaseMapper<ENTITY, DOMAIN> mapper();
 
 }

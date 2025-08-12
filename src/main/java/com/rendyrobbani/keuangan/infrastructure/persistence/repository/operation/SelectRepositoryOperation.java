@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public interface SelectRepositoryOperation<ID, DOMAIN extends Base<ID>, ENTITY extends DOMAIN> extends SelectRepository<ID, DOMAIN>,
-                                                                                                       BaseRepository<ID, DOMAIN, ENTITY> {
+public interface SelectRepositoryOperation<ENTITY extends DOMAIN, DOMAIN extends Base<ID>, ID> extends SelectRepository<DOMAIN, ID>,
+                                                                                                       BaseRepository<ENTITY, DOMAIN, ID> {
 
 	@Override
 	default List<DOMAIN> selectAll() {

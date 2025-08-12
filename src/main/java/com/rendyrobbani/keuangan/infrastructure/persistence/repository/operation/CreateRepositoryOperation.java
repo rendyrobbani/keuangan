@@ -7,8 +7,8 @@ import com.rendyrobbani.keuangan.infrastructure.persistence.repository.BaseRepos
 
 import java.time.LocalDateTime;
 
-public interface CreateRepositoryOperation<ID, DOMAIN extends Base<ID>, ENTITY extends DOMAIN> extends CreateRepository<DOMAIN>,
-                                                                                                       BaseRepository<ID, DOMAIN, ENTITY> {
+public interface CreateRepositoryOperation<ENTITY extends DOMAIN, DOMAIN extends Base<ID>, ID> extends CreateRepository<DOMAIN>,
+                                                                                                       BaseRepository<ENTITY, DOMAIN, ID> {
 
 	@Override
 	default DOMAIN create(DOMAIN domain, LocalDateTime createdAt, Nip createdBy) {
