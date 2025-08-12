@@ -1,5 +1,6 @@
 package com.rendyrobbani.keuangan.infrastructure.persistence.entity;
 
+import com.rendyrobbani.keuangan.domain.model.entity.Data;
 import com.rendyrobbani.keuangan.domain.model.vo.Nip;
 import com.rendyrobbani.keuangan.infrastructure.persistence.converter.NipConverter;
 import jakarta.persistence.Column;
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 @Accessors(chain = false, fluent = true)
 @NoArgsConstructor
 @MappedSuperclass
-public abstract class AbstractDataEntity<ID, DOMAIN> extends AbstractBaseEntity<ID, DOMAIN> implements DataEntity<ID, DOMAIN> {
+public abstract class AbstractDataEntity<ID, DOMAIN> extends AbstractBaseEntity<ID, DOMAIN> implements Data<ID> {
 
 	@Column(name = "updated_at")
 	protected LocalDateTime updatedAt;
@@ -35,5 +36,27 @@ public abstract class AbstractDataEntity<ID, DOMAIN> extends AbstractBaseEntity<
 	@Convert(converter = NipConverter.class)
 	@Column(name = "deleted_by")
 	protected Nip deletedBy;
+
+	@Override
+	public void update(LocalDateTime updatedAt, Nip updatedBy) {
+		this.updatedAt = updatedAt;
+		this.updatedBy = updatedBy;
+	}
+
+	@Override
+	public void delete(LocalDateTime deletedAt, Nip deletedBy) {
+		this.isDeleted = true;
+		this.deletedAt = deletedAt;
+		this.deletedBy = deletedBy;
+	}
+
+	@Override
+	public void restore(LocalDateTime restoreAt, Nip restoreBy) {
+		this.isDeleted = false;
+		this.deletedAt = null;
+		this.deletedBy = null;
+		this.updatedAt = restoreAt;
+		this.updatedBy = restoreBy;
+	}
 
 }

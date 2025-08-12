@@ -1,6 +1,6 @@
 package com.rendyrobbani.keuangan.infrastructure.persistence.entity.adapter.user;
 
-import com.rendyrobbani.keuangan.domain.model.schema.user.User;
+import com.rendyrobbani.keuangan.domain.model.entity.user.DataUser;
 import com.rendyrobbani.keuangan.domain.model.vo.Gender;
 import com.rendyrobbani.keuangan.domain.model.vo.Nip;
 import com.rendyrobbani.keuangan.domain.model.vo.Pangkat;
@@ -10,6 +10,7 @@ import com.rendyrobbani.keuangan.infrastructure.persistence.converter.PangkatCon
 import com.rendyrobbani.keuangan.infrastructure.persistence.entity.AbstractDataEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
+import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -25,7 +26,15 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @MappedSuperclass
-public abstract class AbstractUserEntity<ID, DOMAIN> extends AbstractDataEntity<ID, DOMAIN> implements User {
+public abstract class AbstractDataUserEntity extends AbstractDataEntity<String, DataUser> implements DataUser {
+
+	@Id
+	@Column(name = "id")
+	protected String id;
+
+	@Convert(converter = NipConverter.class)
+	@Column(name = "id", insertable = false, updatable = false)
+	protected Nip nip;
 
 	@Convert(converter = PangkatConverter.class)
 	@Column(name = "pangkat")
@@ -71,5 +80,36 @@ public abstract class AbstractUserEntity<ID, DOMAIN> extends AbstractDataEntity<
 	@Convert(converter = NipConverter.class)
 	@Column(name = "locked_by")
 	protected Nip lockedBy;
+
+	public void lock(LocalDateTime lockedAt, Nip lockedBy) {
+		this.isLocked = true;
+		this.lockedAt = lockedAt;
+		this.lockedBy = lockedBy;
+	}
+
+	public void unlock(LocalDateTime unlockedAt, Nip unlockedBy) {
+		this.isLocked = false;
+		this.lockedAt = null;
+		this.lockedBy = null;
+		this.updatedAt = unlockedAt;
+		this.updatedBy = unlockedBy;
+	}
+
+	@Override
+	public void sync(DataUser domain) {
+		this.id(domain.id());
+		this.nip(domain.nip());
+		this.pangkat(domain.pangkat());
+		this.name(domain.name());
+		this.titlePrefix(domain.titlePrefix());
+		this.titleSuffix(domain.titleSuffix());
+		this.password(domain.password());
+		this.dateOfBirth(domain.dateOfBirth());
+		this.dateOfStart(domain.dateOfStart());
+		this.gender(domain.gender());
+		this.number(domain.number());
+		this.isPNS(domain.isPNS());
+		this.isP3K(domain.isP3K());
+	}
 
 }
