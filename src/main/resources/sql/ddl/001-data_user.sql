@@ -27,9 +27,10 @@ create or replace table data_user (
 	constraint ck_data_user_02 check (pangkat regexp '[1-4][A-D]|4E|0[1-9]|1[0-7]'),
 	constraint ck_data_user_03 check (gender in (1, 2)),
 	constraint ck_data_user_04 check (is_pns <> is_p3k),
-	constraint fk_data_user_01 foreign key (created_by) references data_user (id),
-	constraint fk_data_user_02 foreign key (updated_by) references data_user (id),
-	constraint fk_data_user_03 foreign key (deleted_by) references data_user (id),
+	constraint fk_data_user_01 foreign key (locked_by) references data_user (id),
+	constraint fk_data_user_02 foreign key (created_by) references data_user (id),
+	constraint fk_data_user_03 foreign key (updated_by) references data_user (id),
+	constraint fk_data_user_04 foreign key (deleted_by) references data_user (id),
 	primary key (id)
 ) engine = innodb
   charset = utf8mb4

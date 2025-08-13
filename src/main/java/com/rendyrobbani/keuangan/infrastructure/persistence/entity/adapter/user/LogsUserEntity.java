@@ -1,7 +1,7 @@
 package com.rendyrobbani.keuangan.infrastructure.persistence.entity.adapter.user;
 
-import com.rendyrobbani.keuangan.domain.model.entity.user.DataUser;
-import com.rendyrobbani.keuangan.schema.user.DataUserTable;
+import com.rendyrobbani.keuangan.domain.model.entity.user.LogsUser;
+import com.rendyrobbani.keuangan.schema.user.LogsUserTable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -14,11 +14,11 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @Entity
-@Table(name = DataUserTable.NAME)
-public class DataUserEntity extends AbstractDataUserEntity {
+@Table(name = LogsUserTable.NAME)
+public class LogsUserEntity extends AbstractLogsUserEntity {
 
 	@Override
-	public DataUser toDomain() {
+	public LogsUser toDomain() {
 		return this;
 	}
 

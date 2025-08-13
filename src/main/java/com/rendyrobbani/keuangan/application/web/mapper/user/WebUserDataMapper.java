@@ -1,7 +1,7 @@
 package com.rendyrobbani.keuangan.application.web.mapper.user;
 
-import com.rendyrobbani.keuangan.application.web.mapper.user.record.WebUserDataDetailResponseRecord;
-import com.rendyrobbani.keuangan.application.web.mapper.user.record.WebUserDataSelectResponseRecord;
+import com.rendyrobbani.keuangan.application.web.record.user.WebUserDataDetailResponseRecord;
+import com.rendyrobbani.keuangan.application.web.record.user.WebUserDataSelectResponseRecord;
 import com.rendyrobbani.keuangan.domain.model.dto.web.user.data.WebUserDataCreateRequest;
 import com.rendyrobbani.keuangan.domain.model.entity.user.DataUser;
 import com.rendyrobbani.keuangan.domain.model.dto.web.user.data.WebUserDataDetailResponse;

@@ -27,17 +27,7 @@ public final class DataUserTable {
 		if (columns == null) {
 			columns = new ArrayList<>();
 			columns.add(ColumnFactory.createNip("id", false, true));
-			columns.add(ColumnFactory.createPangkat("pangkat", false));
-			columns.add(ColumnFactory.createVarChar("name", false));
-			columns.add(ColumnFactory.createVarChar("title_prefix", true));
-			columns.add(ColumnFactory.createVarChar("title_suffix", true));
-			columns.add(ColumnFactory.createVarChar("password", false));
-			columns.add(ColumnFactory.createDateOnly("date_of_birth", false));
-			columns.add(ColumnFactory.createDateOnly("date_of_start", true));
-			columns.add(ColumnFactory.createGender("gender", false));
-			columns.add(ColumnFactory.createSmallInt("number", false));
-			columns.add(ColumnFactory.createBoolean("is_pns", false));
-			columns.add(ColumnFactory.createBoolean("is_p3k", false));
+			columns.addAll(BaseUserTable.getColumns());
 			columns.addAll(LockTable.getColumns());
 			columns.addAll(DataTable.getColumns());
 		}
@@ -50,9 +40,7 @@ public final class DataUserTable {
 		if (checks == null) {
 			checks = new ArrayList<>();
 			checks.add(CheckConstraintFactory.columnIsNip(NAME, checks.size() + 1, "id"));
-			checks.add(CheckConstraintFactory.columnIsPangkat(NAME, checks.size() + 1, "pangkat"));
-			checks.add(CheckConstraintFactory.columnIsGender(NAME, checks.size() + 1, "gender"));
-			checks.add(CheckConstraintFactory.columnsNotEqual(NAME, checks.size() + 1, "is_pns", "is_p3k"));
+			checks.addAll(BaseUserTable.getChecks(NAME, checks.size() + 1));
 		}
 		return checks;
 	}

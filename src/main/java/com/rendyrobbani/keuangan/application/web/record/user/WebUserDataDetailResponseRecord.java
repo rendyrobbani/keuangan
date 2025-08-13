@@ -1,4 +1,4 @@
-package com.rendyrobbani.keuangan.application.web.mapper.user.record;
+package com.rendyrobbani.keuangan.application.web.record.user;
 
 import com.rendyrobbani.keuangan.domain.model.dto.web.user.data.WebUserDataDetailResponse;
 import com.rendyrobbani.keuangan.domain.model.vo.Gender;
