@@ -7,7 +7,7 @@ import com.rendyrobbani.keuangan.domain.model.vo.Pangkat;
 import com.rendyrobbani.keuangan.infrastructure.persistence.converter.GenderConverter;
 import com.rendyrobbani.keuangan.infrastructure.persistence.converter.NipConverter;
 import com.rendyrobbani.keuangan.infrastructure.persistence.converter.PangkatConverter;
-import com.rendyrobbani.keuangan.infrastructure.persistence.entity.AbstractDataEntity;
+import com.rendyrobbani.keuangan.infrastructure.persistence.entity.AbstractLockEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Id;
@@ -19,14 +19,13 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
 @Accessors(chain = false, fluent = true)
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @MappedSuperclass
-public abstract class AbstractDataUserEntity extends AbstractDataEntity<DataUser, String> implements DataUser {
+public abstract class AbstractDataUserEntity extends AbstractLockEntity<DataUser, String> implements DataUser {
 
 	@Id
 	@Column(name = "id")
@@ -70,30 +69,6 @@ public abstract class AbstractDataUserEntity extends AbstractDataEntity<DataUser
 
 	@Column(name = "is_p3k")
 	protected boolean isP3K;
-
-	@Column(name = "is_locked")
-	protected boolean isLocked;
-
-	@Column(name = "locked_at")
-	protected LocalDateTime lockedAt;
-
-	@Convert(converter = NipConverter.class)
-	@Column(name = "locked_by")
-	protected Nip lockedBy;
-
-	public void lock(LocalDateTime lockedAt, Nip lockedBy) {
-		this.isLocked = true;
-		this.lockedAt = lockedAt;
-		this.lockedBy = lockedBy;
-	}
-
-	public void unlock(LocalDateTime unlockedAt, Nip unlockedBy) {
-		this.isLocked = false;
-		this.lockedAt = null;
-		this.lockedBy = null;
-		this.updatedAt = unlockedAt;
-		this.updatedBy = unlockedBy;
-	}
 
 	@Override
 	public void sync(DataUser domain) {

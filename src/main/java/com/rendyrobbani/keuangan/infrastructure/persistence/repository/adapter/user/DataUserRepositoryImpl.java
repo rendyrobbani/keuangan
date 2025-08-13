@@ -13,7 +13,7 @@ public class DataUserRepositoryImpl implements DataUserRepository,
                                                CreateRepositoryOperation<DataUserEntity, DataUser, String>,
                                                UpdateRepositoryOperation<DataUserEntity, DataUser, String>,
                                                DeleteRepositoryOperation<DataUserEntity, DataUser, String>,
-                                               RestoreRepositoryOperation<DataUserEntity, DataUser, String> {
+                                               LockedRepositoryOperation<DataUserEntity, DataUser, String> {
 
 	private final DataUserJpaRepository repository;
 

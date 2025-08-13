@@ -9,4 +9,6 @@ public interface DeleteRepository<DOMAIN extends Data<ID>, ID> {
 
 	DOMAIN delete(DOMAIN domain, LocalDateTime deletedAt, Nip deletedBy);
 
+	DOMAIN restore(DOMAIN domain, LocalDateTime restoredAt, Nip restoredBy);
+
 }

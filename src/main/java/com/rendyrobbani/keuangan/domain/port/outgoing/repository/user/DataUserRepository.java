@@ -7,6 +7,6 @@ public interface DataUserRepository extends SelectRepository<DataUser, String>,
                                             CreateRepository<DataUser, String>,
                                             UpdateRepository<DataUser, String>,
                                             DeleteRepository<DataUser, String>,
-                                            RestoreRepository<DataUser, String> {
+                                            LockedRepository<DataUser, String> {
 
 }
