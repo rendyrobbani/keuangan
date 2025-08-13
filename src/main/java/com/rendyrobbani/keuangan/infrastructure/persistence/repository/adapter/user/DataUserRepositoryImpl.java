@@ -3,17 +3,17 @@ package com.rendyrobbani.keuangan.infrastructure.persistence.repository.adapter.
 import com.rendyrobbani.keuangan.domain.model.entity.user.DataUser;
 import com.rendyrobbani.keuangan.domain.port.outgoing.repository.user.DataUserRepository;
 import com.rendyrobbani.keuangan.infrastructure.persistence.entity.adapter.user.DataUserEntity;
-import com.rendyrobbani.keuangan.infrastructure.persistence.mapper.BaseMapper;
-import com.rendyrobbani.keuangan.infrastructure.persistence.mapper.user.DataUserEntityMapper;
-import com.rendyrobbani.keuangan.infrastructure.persistence.repository.operation.CreateRepositoryOperation;
-import com.rendyrobbani.keuangan.infrastructure.persistence.repository.operation.SelectRepositoryOperation;
+import com.rendyrobbani.keuangan.infrastructure.persistence.repository.operation.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class DataUserRepositoryImpl implements DataUserRepository,
                                                SelectRepositoryOperation<DataUserEntity, DataUser, String>,
-                                               CreateRepositoryOperation<DataUserEntity, DataUser, String> {
+                                               CreateRepositoryOperation<DataUserEntity, DataUser, String>,
+                                               UpdateRepositoryOperation<DataUserEntity, DataUser, String>,
+                                               DeleteRepositoryOperation<DataUserEntity, DataUser, String>,
+                                               RestoreRepositoryOperation<DataUserEntity, DataUser, String> {
 
 	private final DataUserJpaRepository repository;
 
@@ -27,8 +27,8 @@ public class DataUserRepositoryImpl implements DataUserRepository,
 	}
 
 	@Override
-	public BaseMapper<DataUserEntity, DataUser> mapper() {
-		return DataUserEntityMapper.getInstance();
+	public DataUserEntity instance() {
+		return new DataUserEntity();
 	}
 
 }

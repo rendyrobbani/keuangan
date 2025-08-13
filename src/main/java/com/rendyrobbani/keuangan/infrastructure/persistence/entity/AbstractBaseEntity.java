@@ -1,6 +1,5 @@
 package com.rendyrobbani.keuangan.infrastructure.persistence.entity;
 
-import com.rendyrobbani.keuangan.domain.model.entity.Base;
 import com.rendyrobbani.keuangan.domain.model.vo.Nip;
 import com.rendyrobbani.keuangan.infrastructure.persistence.converter.NipConverter;
 import jakarta.persistence.Column;
@@ -20,7 +19,7 @@ import java.time.LocalDateTime;
 @Accessors(chain = false, fluent = true)
 @NoArgsConstructor
 @MappedSuperclass
-public abstract class AbstractBaseEntity<ID, DOMAIN> implements Base<ID>,
+public abstract class AbstractBaseEntity<DOMAIN, ID> implements BaseEntity<DOMAIN, ID>,
                                                                 Serializable {
 
 	@Serial
@@ -34,11 +33,5 @@ public abstract class AbstractBaseEntity<ID, DOMAIN> implements Base<ID>,
 	protected Nip createdBy;
 
 	public abstract void sync(DOMAIN domain);
-
-	@Override
-	public void create(LocalDateTime createdAt, Nip createdBy) {
-		this.createdAt = createdAt;
-		this.createdBy = createdBy;
-	}
 
 }

@@ -10,6 +10,6 @@ public interface Data<ID> extends Base<ID> {
 
 	void delete(LocalDateTime deletedAt, Nip deletedBy);
 
-	void restore(LocalDateTime restoreAt, Nip restoreBy);
+	void restore(LocalDateTime restoredAt, Nip restoredBy);
 
 }

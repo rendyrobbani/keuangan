@@ -1,5 +1,6 @@
 package com.rendyrobbani.keuangan.infrastructure.persistence.entity.adapter.user;
 
+import com.rendyrobbani.keuangan.domain.model.entity.user.DataUser;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -14,5 +15,10 @@ import lombok.experimental.Accessors;
 @Entity
 @Table(name = "data_user")
 public class DataUserEntity extends AbstractDataUserEntity {
+
+	@Override
+	public DataUser toDomain() {
+		return this;
+	}
 
 }

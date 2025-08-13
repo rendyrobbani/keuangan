@@ -26,7 +26,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @MappedSuperclass
-public abstract class AbstractDataUserEntity extends AbstractDataEntity<String, DataUser> implements DataUser {
+public abstract class AbstractDataUserEntity extends AbstractDataEntity<DataUser, String> implements DataUser {
 
 	@Id
 	@Column(name = "id")
