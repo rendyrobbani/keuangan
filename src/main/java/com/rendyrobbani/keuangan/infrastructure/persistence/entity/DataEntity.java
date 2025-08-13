@@ -12,8 +12,6 @@ public interface DataEntity<DOMAIN, ID> extends BaseEntity<DOMAIN, ID>,
 
 	void updatedBy(Nip updatedBy);
 
-	boolean isDeleted();
-
 	void isDeleted(boolean isDeleted);
 
 	void deletedAt(LocalDateTime deletedAt);

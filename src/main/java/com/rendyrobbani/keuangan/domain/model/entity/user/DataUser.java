@@ -16,8 +16,6 @@ public interface DataUser extends User,
 
 	boolean isLocked();
 
-	boolean isDeleted();
-
 	void lock(LocalDateTime lockedAt, Nip lockedBy);
 
 	void unlock(LocalDateTime unlockedAt, Nip unlockedBy);

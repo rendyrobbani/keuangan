@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 
 public interface Data<ID> extends Base<ID> {
 
+	boolean isDeleted();
+
 	void update(LocalDateTime updatedAt, Nip updatedBy);
 
 	void delete(LocalDateTime deletedAt, Nip deletedBy);
