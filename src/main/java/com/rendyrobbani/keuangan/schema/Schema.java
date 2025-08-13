@@ -1,7 +1,8 @@
 package com.rendyrobbani.keuangan.schema;
 
 import com.rendyrobbani.keuangan.common.schema.table.Table;
-import com.rendyrobbani.keuangan.schema.user.UserTable;
+import com.rendyrobbani.keuangan.schema.user.DataUserTable;
+import com.rendyrobbani.keuangan.schema.user.LogsUserTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,8 @@ public class Schema {
 	public static List<Table> getTables() {
 		if (tables == null) {
 			tables = new ArrayList<>();
-			tables.add(UserTable.getTable());
+			tables.add(DataUserTable.getTable());
+			tables.add(LogsUserTable.getTable());
 		}
 		return tables;
 	}

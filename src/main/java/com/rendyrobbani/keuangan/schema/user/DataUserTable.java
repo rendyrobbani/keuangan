@@ -17,13 +17,13 @@ import java.util.List;
 
 @SuppressWarnings("ConstantValue")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class UserTable {
+public final class DataUserTable {
 
 	public static final String NAME = "data_user";
 
 	private static List<Column> columns;
 
-	public static List<Column> getColumns() {
+	private static List<Column> getColumns() {
 		if (columns == null) {
 			columns = new ArrayList<>();
 			columns.add(ColumnFactory.createNip("id", false, true));
@@ -46,7 +46,7 @@ public final class UserTable {
 
 	private static List<CheckConstraint> checks;
 
-	public static List<CheckConstraint> getChecks() {
+	private static List<CheckConstraint> getChecks() {
 		if (checks == null) {
 			checks = new ArrayList<>();
 			checks.add(CheckConstraintFactory.columnIsNip(NAME, checks.size() + 1, "id"));
@@ -59,9 +59,10 @@ public final class UserTable {
 
 	private static List<ForeignKeyConstraint> foreignKeys;
 
-	public static List<ForeignKeyConstraint> getForeignKeys() {
+	private static List<ForeignKeyConstraint> getForeignKeys() {
 		if (foreignKeys == null) {
 			foreignKeys = new ArrayList<>();
+			foreignKeys.addAll(LockTable.getForeignKeys(NAME, foreignKeys.size() + 1));
 			foreignKeys.addAll(DataTable.getForeignKeys(NAME, foreignKeys.size() + 1));
 		}
 		return foreignKeys;

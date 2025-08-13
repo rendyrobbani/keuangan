@@ -4,7 +4,7 @@ import com.rendyrobbani.keuangan.common.schema.column.Column;
 import com.rendyrobbani.keuangan.common.schema.column.ColumnFactory;
 import com.rendyrobbani.keuangan.common.schema.constraint.foreign.ForeignKeyConstraint;
 import com.rendyrobbani.keuangan.common.schema.constraint.foreign.ForeignKeyConstraintFactory;
-import com.rendyrobbani.keuangan.schema.user.UserTable;
+import com.rendyrobbani.keuangan.schema.user.DataUserTable;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -32,7 +32,7 @@ public final class LockTable {
 	public static List<ForeignKeyConstraint> getForeignKeys(String tableName, int index) {
 		if (foreignKeys == null) {
 			foreignKeys = new ArrayList<>();
-			foreignKeys.add(ForeignKeyConstraintFactory.create(tableName, foreignKeys.size() + index, "locked_by", UserTable.NAME, "id"));
+			foreignKeys.add(ForeignKeyConstraintFactory.create(tableName, foreignKeys.size() + index, "locked_by", DataUserTable.NAME, "id"));
 		}
 		return foreignKeys;
 	}
