@@ -1,4 +1,4 @@
-package com.rendyrobbani.keuangan.domain.model.response.web.user.data;
+package com.rendyrobbani.keuangan.domain.model.dto.web.user.data;
 
 public interface WebUserDataSelectResponse {
 

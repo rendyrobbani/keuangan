@@ -14,14 +14,12 @@ public interface LockEntity<DOMAIN, ID> extends DataEntity<DOMAIN, ID>,
 
 	void lockedBy(Nip lockedBy);
 
-	@Override
 	default void lock(LocalDateTime lockedAt, Nip lockedBy) {
 		this.isLocked(true);
 		this.lockedAt(lockedAt);
 		this.lockedBy(lockedBy);
 	}
 
-	@Override
 	default void unlock(LocalDateTime unlockedAt, Nip unlockedBy) {
 		this.isLocked(false);
 		this.lockedAt(null);

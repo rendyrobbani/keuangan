@@ -15,7 +15,6 @@ public interface BaseEntity<DOMAIN, ID> extends Base<ID> {
 
 	void createdBy(Nip createdBy);
 
-	@Override
 	default void create(LocalDateTime createdAt, Nip createdBy) {
 		this.sync(toDomain());
 		this.createdAt(createdAt);

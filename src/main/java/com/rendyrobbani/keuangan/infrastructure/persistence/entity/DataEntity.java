@@ -18,20 +18,17 @@ public interface DataEntity<DOMAIN, ID> extends BaseEntity<DOMAIN, ID>,
 
 	void deletedBy(Nip deletedBy);
 
-	@Override
 	default void update(LocalDateTime updatedAt, Nip updatedBy) {
 		this.updatedAt(updatedAt);
 		this.updatedBy(updatedBy);
 	}
 
-	@Override
 	default void delete(LocalDateTime deletedAt, Nip deletedBy) {
 		this.isDeleted(true);
 		this.deletedAt(deletedAt);
 		this.deletedBy(deletedBy);
 	}
 
-	@Override
 	default void restore(LocalDateTime restoredAt, Nip restoredBy) {
 		this.isDeleted(false);
 		this.deletedAt(null);

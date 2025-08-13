@@ -2,8 +2,8 @@ package com.rendyrobbani.keuangan.application.web.service.user;
 
 import com.rendyrobbani.keuangan.application.web.mapper.user.WebUserDataMapper;
 import com.rendyrobbani.keuangan.common.exception.http.NotFoundException;
-import com.rendyrobbani.keuangan.domain.model.response.web.user.data.WebUserDataDetailResponse;
-import com.rendyrobbani.keuangan.domain.model.response.web.user.data.WebUserDataSelectResponse;
+import com.rendyrobbani.keuangan.domain.model.dto.web.user.data.WebUserDataDetailResponse;
+import com.rendyrobbani.keuangan.domain.model.dto.web.user.data.WebUserDataSelectResponse;
 import com.rendyrobbani.keuangan.domain.port.incoming.web.user.WebUserDataSelectService;
 import com.rendyrobbani.keuangan.domain.port.outgoing.repository.user.DataUserRepository;
 import org.springframework.stereotype.Service;

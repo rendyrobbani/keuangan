@@ -1,10 +1,12 @@
 package com.rendyrobbani.keuangan.application.web.mapper.user;
 
-import com.rendyrobbani.keuangan.application.web.mapper.user.record.WebUserDataDetailRecord;
-import com.rendyrobbani.keuangan.application.web.mapper.user.record.WebUserDataSelectRecord;
+import com.rendyrobbani.keuangan.application.web.mapper.user.record.WebUserDataDetailResponseRecord;
+import com.rendyrobbani.keuangan.application.web.mapper.user.record.WebUserDataSelectResponseRecord;
+import com.rendyrobbani.keuangan.domain.model.dto.web.user.data.WebUserDataCreateRequest;
 import com.rendyrobbani.keuangan.domain.model.entity.user.DataUser;
-import com.rendyrobbani.keuangan.domain.model.response.web.user.data.WebUserDataDetailResponse;
-import com.rendyrobbani.keuangan.domain.model.response.web.user.data.WebUserDataSelectResponse;
+import com.rendyrobbani.keuangan.domain.model.dto.web.user.data.WebUserDataDetailResponse;
+import com.rendyrobbani.keuangan.domain.model.dto.web.user.data.WebUserDataSelectResponse;
+import com.rendyrobbani.keuangan.domain.model.entity.user.DataUserRecord;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -12,34 +14,53 @@ import lombok.NoArgsConstructor;
 public final class WebUserDataMapper {
 
 	public static WebUserDataSelectResponse toSelectResponse(DataUser domain) {
-		return new WebUserDataSelectRecord(domain.id(),
-		                                   domain.simpleNip(),
-		                                   domain.styledNip(),
-		                                   domain.pangkatTitle(),
-		                                   domain.onlyName(false),
-		                                   domain.fullName(false),
-		                                   domain.isLocked(),
-		                                   domain.isDeleted());
+		return new WebUserDataSelectResponseRecord(domain.id(),
+		                                           domain.simpleNip(),
+		                                           domain.styledNip(),
+		                                           domain.pangkatTitle(),
+		                                           domain.onlyName(false),
+		                                           domain.fullName(false),
+		                                           domain.isLocked(),
+		                                           domain.isDeleted());
 	}
 
 	public static WebUserDataDetailResponse toDetailResponse(DataUser domain) {
-		return new WebUserDataDetailRecord(domain.id(),
-		                                   domain.simpleNip(),
-		                                   domain.styledNip(),
-		                                   domain.pangkatValue(),
-		                                   domain.pangkatTitle(),
-		                                   domain.onlyName(false),
-		                                   domain.fullName(false),
-		                                   domain.titlePrefix(),
-		                                   domain.titleSuffix(),
-		                                   domain.dateOfBirth(),
-		                                   domain.dateOfStart(),
-		                                   domain.gender(),
-		                                   domain.number(),
-		                                   domain.isPNS(),
-		                                   domain.isP3K(),
-		                                   domain.isLocked(),
-		                                   domain.isDeleted());
+		return new WebUserDataDetailResponseRecord(domain.id(),
+		                                           domain.simpleNip(),
+		                                           domain.styledNip(),
+		                                           domain.pangkatValue(),
+		                                           domain.pangkatTitle(),
+		                                           domain.onlyName(false),
+		                                           domain.fullName(false),
+		                                           domain.titlePrefix(),
+		                                           domain.titleSuffix(),
+		                                           domain.dateOfBirth(),
+		                                           domain.dateOfStart(),
+		                                           domain.gender(),
+		                                           domain.number(),
+		                                           domain.isPNS(),
+		                                           domain.isP3K(),
+		                                           domain.isLocked(),
+		                                           domain.isDeleted());
+	}
+
+	public static DataUser toDomain(WebUserDataCreateRequest request, String password) {
+		return new DataUserRecord(request.nip().simple(),
+		                          request.nip(),
+		                          request.pangkat(),
+		                          request.name(),
+		                          request.titlePrefix(),
+		                          request.titleSuffix(),
+		                          password,
+		                          request.nip().dateOfBirth(),
+		                          request.pangkat().isPNS() ? request.nip().dateOfStart() : request.dateOfStart(),
+		                          request.nip().gender(),
+		                          request.nip().number(),
+		                          request.pangkat().isPNS(),
+		                          request.pangkat().isP3K(),
+		                          false,
+		                          false
+		);
 	}
 
 }

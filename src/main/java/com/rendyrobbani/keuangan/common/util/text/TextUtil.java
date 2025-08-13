@@ -38,4 +38,8 @@ public final class TextUtil {
 		return TextUtilOfCase.toCamelCase(text, null, null);
 	}
 
+	public static String trim(String text) {
+		return TextUtilOfClean.clean(text);
+	}
+
 }
