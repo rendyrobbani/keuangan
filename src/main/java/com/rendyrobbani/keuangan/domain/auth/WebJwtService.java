@@ -23,4 +23,8 @@ public interface WebJwtService {
 
 	DataUser getUser();
 
+	Role getRole();
+
+	boolean isAdmin();
+
 }

@@ -7,6 +7,7 @@ import com.rendyrobbani.keuangan.domain.model.dto.web.user.WebUserDataCreateRequ
 import com.rendyrobbani.keuangan.domain.model.dto.web.user.WebUserDataDetailResponse;
 import com.rendyrobbani.keuangan.domain.port.incoming.web.user.WebUserDataCreateService;
 import com.rendyrobbani.keuangan.domain.port.outgoing.repository.user.DataUserRepository;
+import com.rendyrobbani.keuangan.domain.port.outgoing.repository.user.LogsUserRepository;
 import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,6 +34,8 @@ public class WebUserDataCreateServiceImpl implements WebUserDataCreateService {
 
 	private final DataUserRepository dataRepository;
 
+	private final LogsUserRepository logsRepository;
+
 	@Override
 	@Transactional
 	public WebUserDataDetailResponse create(WebUserDataCreateRequest request) {
@@ -46,11 +49,13 @@ public class WebUserDataCreateServiceImpl implements WebUserDataCreateService {
 			if (domain == null) {
 				domain = WebUserMapper.toDomain(request, bCryptPasswordEncoder.encode(defaultPassword));
 				domain = dataRepository.create(domain, actionAt, actionBy);
+				logsRepository.create(domain.toLog(), actionAt, actionBy);
 				return WebUserMapper.toDetailResponse(domain);
 			}
 
 			if (domain.isDeleted()) {
 				domain = dataRepository.restore(domain, actionAt, actionBy);
+				logsRepository.create(domain.toLog(), actionAt, actionBy);
 				return WebUserMapper.toDetailResponse(domain);
 			} else {
 				throw new BadRequestException(Map.of("nip", List.of("sudah digunakan")));

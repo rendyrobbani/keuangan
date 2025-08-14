@@ -127,4 +127,16 @@ public class WebJwtServiceImpl implements WebJwtService {
 		return null;
 	}
 
+	@Override
+	public Role getRole() {
+		var payload = getToken();
+		if (payload != null) return payload.role();
+		return null;
+	}
+
+	@Override
+	public boolean isAdmin() {
+		return this.getRole().equals(Role.ADMIN);
+	}
+
 }

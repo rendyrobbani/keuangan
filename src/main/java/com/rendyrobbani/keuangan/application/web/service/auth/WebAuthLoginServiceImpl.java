@@ -6,6 +6,7 @@ import com.rendyrobbani.keuangan.domain.auth.WebJwtService;
 import com.rendyrobbani.keuangan.domain.model.dto.web.auth.WebAuthLoginRequest;
 import com.rendyrobbani.keuangan.domain.model.dto.web.auth.WebAuthLoginResponse;
 import com.rendyrobbani.keuangan.domain.model.entity.user.DataUser;
+import com.rendyrobbani.keuangan.domain.model.vo.Role;
 import com.rendyrobbani.keuangan.domain.port.incoming.web.auth.WebAuthLoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,10 @@ public class WebAuthLoginServiceImpl implements WebAuthLoginService {
 
 	private WebAuthLoginResponse loginAsAdministrator() {
 		var user = webJwtService.getUser();
-		if (user.id().equals(admin.id())) return toResponse(user);
+		if (user.id().equals(admin.id())) {
+			webJwtService.setToken(user, Role.ADMIN);
+			return toResponse(user);
+		}
 		throw new UnauthorizedException();
 	}
 

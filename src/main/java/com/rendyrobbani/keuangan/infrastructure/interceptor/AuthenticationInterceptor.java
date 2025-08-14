@@ -12,7 +12,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class WebAuthenticationInterceptor implements HandlerInterceptor {
+public class AuthenticationInterceptor implements HandlerInterceptor {
 
 	private final List<String> whitelist = List.of(
 			"POST/web/auth/prelogin"

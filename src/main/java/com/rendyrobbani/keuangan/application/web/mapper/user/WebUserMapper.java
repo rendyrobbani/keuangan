@@ -3,6 +3,7 @@ package com.rendyrobbani.keuangan.application.web.mapper.user;
 import com.rendyrobbani.keuangan.application.web.record.user.WebUserDataDetailResponseRecord;
 import com.rendyrobbani.keuangan.application.web.record.user.WebUserDataSelectResponseRecord;
 import com.rendyrobbani.keuangan.domain.model.dto.web.user.WebUserDataCreateRequest;
+import com.rendyrobbani.keuangan.domain.model.dto.web.user.WebUserDataUpdateRequest;
 import com.rendyrobbani.keuangan.domain.model.entity.user.DataUser;
 import com.rendyrobbani.keuangan.domain.model.dto.web.user.WebUserDataDetailResponse;
 import com.rendyrobbani.keuangan.domain.model.dto.web.user.WebUserDataSelectResponse;
@@ -60,6 +61,25 @@ public final class WebUserMapper {
 		                          request.pangkat().isP3K(),
 		                          false,
 		                          false
+		);
+	}
+
+	public static DataUser toDomain(WebUserDataUpdateRequest request, DataUser domain) {
+		return new DataUserRecord(domain.nip().simple(),
+		                          domain.nip(),
+		                          request.pangkat(),
+		                          request.name(),
+		                          request.titlePrefix(),
+		                          request.titleSuffix(),
+		                          domain.password(),
+		                          domain.nip().dateOfBirth(),
+		                          request.pangkat().isPNS() ? domain.nip().dateOfStart() : request.dateOfStart(),
+		                          domain.nip().gender(),
+		                          domain.nip().number(),
+		                          request.pangkat().isPNS(),
+		                          request.pangkat().isP3K(),
+		                          domain.isLocked(),
+		                          domain.isDeleted()
 		);
 	}
 
