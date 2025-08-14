@@ -1,0 +1,44 @@
+package com.rendyrobbani.keuangan.application.web.service.master.fungsi;
+
+import com.rendyrobbani.keuangan.application.web.mapper.master.fungsi.WebMasterFungsiMapper;
+import com.rendyrobbani.keuangan.common.exception.http.NotFoundException;
+import com.rendyrobbani.keuangan.domain.auth.WebJwtService;
+import com.rendyrobbani.keuangan.domain.model.dto.web.master.fungsi.WebMasterFungsiDetailResponse;
+import com.rendyrobbani.keuangan.domain.port.incoming.web.master.fungsi.WebMasterFungsiDeleteService;
+import com.rendyrobbani.keuangan.domain.port.outgoing.repository.master.codes.fungsi.DataMasterFungsiRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+
+@Service
+@RequiredArgsConstructor
+public class WebMasterFungsiDeleteServiceImpl implements WebMasterFungsiDeleteService {
+
+	private final WebJwtService webJwtService;
+
+	private final DataMasterFungsiRepository repository;
+
+	@Override
+	public WebMasterFungsiDetailResponse delete(String id) {
+		var domain = repository.selectById(id).orElseThrow(NotFoundException::new);
+		if (domain.isDeleted()) return WebMasterFungsiMapper.toDetailResponse(domain);
+
+		var actionAt = LocalDateTime.now();
+		var actionBy = webJwtService.getUser().nip();
+
+		return WebMasterFungsiMapper.toDetailResponse(repository.delete(domain, actionAt, actionBy));
+	}
+
+	@Override
+	public WebMasterFungsiDetailResponse restore(String id) {
+		var domain = repository.selectById(id).orElseThrow(NotFoundException::new);
+		if (!domain.isDeleted()) return WebMasterFungsiMapper.toDetailResponse(domain);
+
+		var actionAt = LocalDateTime.now();
+		var actionBy = webJwtService.getUser().nip();
+
+		return WebMasterFungsiMapper.toDetailResponse(repository.delete(domain, actionAt, actionBy));
+	}
+
+}

@@ -43,8 +43,10 @@ public class BadRequestException extends HttpException {
 		var errors = new HashMap<String, List<String>>();
 		for (var violation : constraintViolations) {
 			var messages = errors.getOrDefault(violation.getPropertyPath().toString(), new ArrayList<>());
-			messages.add(violation.getMessage());
-			errors.put(violation.getPropertyPath().toString(), messages);
+			if (!messages.contains(violation.getMessage())) {
+				messages.add(violation.getMessage());
+				errors.put(violation.getPropertyPath().toString(), messages);
+			}
 		}
 
 		this.status = DEFAULT_STATUS;

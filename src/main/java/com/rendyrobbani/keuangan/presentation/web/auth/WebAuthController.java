@@ -4,7 +4,7 @@ import com.rendyrobbani.keuangan.application.web.record.auth.WebAuthLoginRequest
 import com.rendyrobbani.keuangan.application.web.record.auth.WebAuthPreloginRequestRecord;
 import com.rendyrobbani.keuangan.domain.port.incoming.web.auth.WebAuthLoginService;
 import com.rendyrobbani.keuangan.domain.port.incoming.web.auth.WebAuthPreloginService;
-import com.rendyrobbani.keuangan.presentation.web.common.WebResponse;
+import com.rendyrobbani.keuangan.presentation.web.WebResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
