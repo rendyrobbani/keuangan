@@ -1,7 +1,7 @@
 package com.rendyrobbani.keuangan.domain.port.incoming.web.user;
 
-import com.rendyrobbani.keuangan.domain.model.dto.web.user.data.WebUserDataCreateRequest;
-import com.rendyrobbani.keuangan.domain.model.dto.web.user.data.WebUserDataDetailResponse;
+import com.rendyrobbani.keuangan.domain.model.dto.web.user.WebUserDataCreateRequest;
+import com.rendyrobbani.keuangan.domain.model.dto.web.user.WebUserDataDetailResponse;
 
 public interface WebUserDataCreateService {
 

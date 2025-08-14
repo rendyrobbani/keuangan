@@ -1,13 +1,10 @@
-package com.rendyrobbani.keuangan.domain.model.dto.web.user.data;
+package com.rendyrobbani.keuangan.domain.model.dto.web.user;
 
-import com.rendyrobbani.keuangan.domain.model.vo.Nip;
 import com.rendyrobbani.keuangan.domain.model.vo.Pangkat;
 
 import java.time.LocalDate;
 
-public interface WebUserDataCreateRequest {
-
-	Nip nip();
+public interface WebUserDataUpdateRequest {
 
 	Pangkat pangkat();
 

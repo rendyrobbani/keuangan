@@ -4,6 +4,7 @@ import com.rendyrobbani.keuangan.common.exception.http.UnauthorizedException;
 import com.rendyrobbani.keuangan.domain.auth.WebJwtPayload;
 import com.rendyrobbani.keuangan.domain.auth.WebJwtService;
 import com.rendyrobbani.keuangan.domain.model.entity.user.DataUser;
+import com.rendyrobbani.keuangan.domain.model.vo.Role;
 import com.rendyrobbani.keuangan.domain.port.outgoing.repository.user.DataUserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -22,7 +23,9 @@ public class WebJwtServiceImpl implements WebJwtService {
 
 	private static final String KEY_TAHUN = "tahun";
 
-	private static final String KEY_USER = "idUser";
+	private static final String KEY_USER = "userId";
+
+	private static final String KEY_ROLE = "roleId";
 
 	@Value("${com.rendyrobbani.latte.tahun}")
 	private Integer tahun;
@@ -41,12 +44,12 @@ public class WebJwtServiceImpl implements WebJwtService {
 	public String encode(WebJwtPayload payload) {
 		return payload == null ? null : Jwts.builder()
 				.header()
-				.add("alg", "hs256")
-				.add("typ", "jwt")
-				.add("env", "web")
+				.add("alg", "HS256")
+				.add("typ", "JWT")
 				.and()
 				.claim(KEY_TAHUN, this.tahun)
 				.claim(KEY_USER, payload.user().id())
+				.claim(KEY_ROLE, payload.role() != null ? payload.role().value() : null)
 				.expiration(new Date(System.currentTimeMillis() + (1000 * 60 * expired.longValue())))
 				.signWith(secretKey)
 				.compact();
@@ -62,10 +65,12 @@ public class WebJwtServiceImpl implements WebJwtService {
 
 			var userId = payload.get(KEY_USER, String.class);
 			if (userId == null) throw new UnauthorizedException();
-
 			var user = userRepository.selectById(userId).orElseThrow(UnauthorizedException::new);
 
-			return new WebJwtPayloadRecord(tahun, user);
+			var roleId = payload.get(KEY_ROLE, Integer.class);
+			var role = Role.fromValue(roleId);
+
+			return new WebJwtPayloadRecord(tahun, user, role);
 		} catch (Exception e) {
 			return null;
 		}
@@ -77,8 +82,13 @@ public class WebJwtServiceImpl implements WebJwtService {
 	}
 
 	@Override
+	public void setToken(DataUser user, Role role) {
+		this.setToken(new WebJwtPayloadRecord(tahun, user, role));
+	}
+
+	@Override
 	public void setToken(DataUser user) {
-		this.setToken(new WebJwtPayloadRecord(tahun, user));
+		this.setToken(user, null);
 	}
 
 	@Override
@@ -108,6 +118,13 @@ public class WebJwtServiceImpl implements WebJwtService {
 		var token = getTokenAsString();
 		if (token == null) return "";
 		return String.join("; ", tokenName + "=" + token, "Path=/", "SameSite=None", "Secure=false");
+	}
+
+	@Override
+	public DataUser getUser() {
+		var payload = getToken();
+		if (payload != null) return payload.user();
+		return null;
 	}
 
 }

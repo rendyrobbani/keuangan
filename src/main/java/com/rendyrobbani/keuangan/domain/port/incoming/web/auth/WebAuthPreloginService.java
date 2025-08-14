@@ -5,6 +5,6 @@ import com.rendyrobbani.keuangan.domain.model.dto.web.auth.WebAuthPreloginRespon
 
 public interface WebAuthPreloginService {
 
-	WebAuthPreloginResponse prelogin(WebAuthPreloginRequest request);
+	WebAuthPreloginResponse handle(WebAuthPreloginRequest request);
 
 }

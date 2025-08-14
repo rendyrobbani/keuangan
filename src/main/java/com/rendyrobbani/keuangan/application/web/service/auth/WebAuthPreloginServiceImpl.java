@@ -34,7 +34,7 @@ public class WebAuthPreloginServiceImpl implements WebAuthPreloginService {
 	private final DataUserRepository userRepository;
 
 	@Override
-	public WebAuthPreloginResponse prelogin(WebAuthPreloginRequest request) {
+	public WebAuthPreloginResponse handle(WebAuthPreloginRequest request) {
 		var violations = validator.validate(request);
 		if (!violations.isEmpty()) throw new BadRequestException(violations);
 		else {

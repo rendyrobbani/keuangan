@@ -1,7 +1,7 @@
 package com.rendyrobbani.keuangan.domain.port.incoming.web.user;
 
-import com.rendyrobbani.keuangan.domain.model.dto.web.user.data.WebUserDataDetailResponse;
-import com.rendyrobbani.keuangan.domain.model.dto.web.user.data.WebUserDataSelectResponse;
+import com.rendyrobbani.keuangan.domain.model.dto.web.user.WebUserDataDetailResponse;
+import com.rendyrobbani.keuangan.domain.model.dto.web.user.WebUserDataSelectResponse;
 
 import java.util.List;
 

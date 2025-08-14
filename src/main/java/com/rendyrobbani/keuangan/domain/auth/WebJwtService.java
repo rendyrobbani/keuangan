@@ -1,6 +1,7 @@
 package com.rendyrobbani.keuangan.domain.auth;
 
 import com.rendyrobbani.keuangan.domain.model.entity.user.DataUser;
+import com.rendyrobbani.keuangan.domain.model.vo.Role;
 
 public interface WebJwtService {
 
@@ -10,6 +11,8 @@ public interface WebJwtService {
 
 	void setToken(WebJwtPayload payload);
 
+	void setToken(DataUser user, Role role);
+
 	void setToken(DataUser user);
 
 	WebJwtPayload getToken();
@@ -17,5 +20,7 @@ public interface WebJwtService {
 	String getTokenAsString();
 
 	String getTokenAsCookie();
+
+	DataUser getUser();
 
 }

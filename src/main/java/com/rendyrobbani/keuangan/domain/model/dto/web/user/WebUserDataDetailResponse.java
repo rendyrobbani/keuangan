@@ -1,4 +1,4 @@
-package com.rendyrobbani.keuangan.domain.model.dto.web.user.data;
+package com.rendyrobbani.keuangan.domain.model.dto.web.user;
 
 import com.rendyrobbani.keuangan.domain.model.vo.Gender;
 

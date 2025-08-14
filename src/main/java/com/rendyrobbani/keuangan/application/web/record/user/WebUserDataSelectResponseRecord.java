@@ -1,6 +1,6 @@
 package com.rendyrobbani.keuangan.application.web.record.user;
 
-import com.rendyrobbani.keuangan.domain.model.dto.web.user.data.WebUserDataSelectResponse;
+import com.rendyrobbani.keuangan.domain.model.dto.web.user.WebUserDataSelectResponse;
 
 public record WebUserDataSelectResponseRecord(String id,
                                               String simpleNip,

@@ -1,7 +1,7 @@
 package com.rendyrobbani.keuangan.application.web.record.user;
 
 import com.rendyrobbani.keuangan.common.util.text.TextUtil;
-import com.rendyrobbani.keuangan.domain.model.dto.web.user.data.WebUserDataCreateRequest;
+import com.rendyrobbani.keuangan.domain.model.dto.web.user.WebUserDataCreateRequest;
 import com.rendyrobbani.keuangan.domain.model.vo.Nip;
 import com.rendyrobbani.keuangan.domain.model.vo.Pangkat;
 import jakarta.validation.constraints.NotBlank;
