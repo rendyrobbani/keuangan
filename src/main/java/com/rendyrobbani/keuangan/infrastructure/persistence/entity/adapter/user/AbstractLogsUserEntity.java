@@ -18,7 +18,6 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
 @Accessors(chain = false, fluent = true)
@@ -72,29 +71,8 @@ public abstract class AbstractLogsUserEntity extends AbstractLogsEntity<LogsUser
 	@Column(name = "is_locked")
 	protected boolean isLocked;
 
-	@Column(name = "locked_at")
-	protected LocalDateTime lockedAt;
-
-	@Convert(converter = NipConverter.class)
-	@Column(name = "locked_by")
-	protected Nip lockedBy;
-
-	@Column(name = "updated_at")
-	protected LocalDateTime updatedAt;
-
-	@Convert(converter = NipConverter.class)
-	@Column(name = "updated_by")
-	protected Nip updatedBy;
-
 	@Column(name = "is_deleted")
 	protected boolean isDeleted;
-
-	@Column(name = "deleted_at")
-	protected LocalDateTime deletedAt;
-
-	@Convert(converter = NipConverter.class)
-	@Column(name = "deleted_by")
-	protected Nip deletedBy;
 
 	@Override
 	public void sync(LogsUser domain) {

@@ -6,6 +6,7 @@ import com.rendyrobbani.keuangan.domain.auth.WebJwtService;
 import com.rendyrobbani.keuangan.domain.port.outgoing.repository.user.DataUserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +16,7 @@ import javax.crypto.SecretKey;
 import java.util.Date;
 
 @Service
+@RequiredArgsConstructor
 public class WebJwtServiceImpl implements WebJwtService {
 
 	private static final String KEY_TAHUN = "tahun";
@@ -33,11 +35,6 @@ public class WebJwtServiceImpl implements WebJwtService {
 	private final SecretKey secretKey;
 
 	private final DataUserRepository userRepository;
-
-	public WebJwtServiceImpl(SecretKey secretKey, DataUserRepository userRepository) {
-		this.secretKey = secretKey;
-		this.userRepository = userRepository;
-	}
 
 	@Override
 	public String encode(WebJwtPayload payload) {

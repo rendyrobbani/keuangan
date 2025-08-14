@@ -9,10 +9,12 @@ import com.rendyrobbani.keuangan.domain.model.entity.user.DataUser;
 import com.rendyrobbani.keuangan.domain.port.incoming.web.auth.WebAuthPreloginService;
 import com.rendyrobbani.keuangan.domain.port.outgoing.repository.user.DataUserRepository;
 import jakarta.validation.Validator;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class WebAuthPreloginServiceImpl implements WebAuthPreloginService {
 
 	private final DataUser admin;
@@ -22,16 +24,6 @@ public class WebAuthPreloginServiceImpl implements WebAuthPreloginService {
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	private final DataUserRepository userRepository;
-
-	public WebAuthPreloginServiceImpl(DataUser admin,
-	                                  Validator validator,
-	                                  BCryptPasswordEncoder bCryptPasswordEncoder,
-	                                  DataUserRepository userRepository) {
-		this.admin = admin;
-		this.validator = validator;
-		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-		this.userRepository = userRepository;
-	}
 
 	@Override
 	public WebAuthPreloginResponse prelogin(WebAuthPreloginRequest request) {

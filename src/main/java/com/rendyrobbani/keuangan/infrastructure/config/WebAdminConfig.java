@@ -7,12 +7,14 @@ import com.rendyrobbani.keuangan.domain.model.vo.NipFactory;
 import com.rendyrobbani.keuangan.domain.model.vo.Pangkat;
 import com.rendyrobbani.keuangan.domain.port.outgoing.repository.user.DataUserRepository;
 import com.rendyrobbani.keuangan.domain.port.outgoing.repository.user.LogsUserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDateTime;
 
 @Configuration
+@RequiredArgsConstructor
 public class WebAdminConfig {
 
 	public static final Nip ADMIN_NIP = NipFactory.create("199510172019031003");
@@ -30,11 +32,6 @@ public class WebAdminConfig {
 	private final DataUserRepository dataRepository;
 
 	private final LogsUserRepository logsRepository;
-
-	public WebAdminConfig(DataUserRepository dataRepository, LogsUserRepository logsRepository) {
-		this.dataRepository = dataRepository;
-		this.logsRepository = logsRepository;
-	}
 
 	@Bean
 	public DataUser admin() {

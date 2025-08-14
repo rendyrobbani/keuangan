@@ -8,6 +8,7 @@ import com.rendyrobbani.keuangan.domain.model.dto.web.user.data.WebUserDataDetai
 import com.rendyrobbani.keuangan.domain.port.incoming.web.user.WebUserDataCreateService;
 import com.rendyrobbani.keuangan.domain.port.outgoing.repository.user.DataUserRepository;
 import jakarta.validation.Validator;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 public class WebUserDataCreateServiceImpl implements WebUserDataCreateService {
 
 	@Value("${com.rendyrobbani.latte.auth.default-password}")
@@ -30,16 +32,6 @@ public class WebUserDataCreateServiceImpl implements WebUserDataCreateService {
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	private final DataUserRepository dataRepository;
-
-	public WebUserDataCreateServiceImpl(WebJwtService webJwtService,
-	                                    Validator validator,
-	                                    BCryptPasswordEncoder bCryptPasswordEncoder,
-	                                    DataUserRepository dataRepository) {
-		this.webJwtService = webJwtService;
-		this.validator = validator;
-		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-		this.dataRepository = dataRepository;
-	}
 
 	@Override
 	@Transactional

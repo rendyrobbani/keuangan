@@ -4,23 +4,21 @@ import com.rendyrobbani.keuangan.domain.auth.WebJwtPayload;
 import com.rendyrobbani.keuangan.domain.auth.WebJwtService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class WebAuthenticationInterceptor implements HandlerInterceptor {
 
 	private final List<String> whitelist = List.of(
 //			"POST" + APPV1AuthenticationController.PATH_PRELOGIN
-	);
+	                                              );
 
 	private final WebJwtService webJwtService;
-
-	public WebAuthenticationInterceptor(WebJwtService webJwtService) {
-		this.webJwtService = webJwtService;
-	}
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {

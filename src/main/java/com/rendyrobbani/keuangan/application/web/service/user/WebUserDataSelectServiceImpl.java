@@ -6,18 +6,16 @@ import com.rendyrobbani.keuangan.domain.model.dto.web.user.data.WebUserDataDetai
 import com.rendyrobbani.keuangan.domain.model.dto.web.user.data.WebUserDataSelectResponse;
 import com.rendyrobbani.keuangan.domain.port.incoming.web.user.WebUserDataSelectService;
 import com.rendyrobbani.keuangan.domain.port.outgoing.repository.user.DataUserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class WebUserDataSelectServiceImpl implements WebUserDataSelectService {
 
 	private final DataUserRepository repository;
-
-	public WebUserDataSelectServiceImpl(DataUserRepository repository) {
-		this.repository = repository;
-	}
 
 	@Override
 	public List<WebUserDataSelectResponse> selectAll() {
