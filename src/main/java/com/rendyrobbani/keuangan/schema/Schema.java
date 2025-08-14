@@ -1,6 +1,7 @@
 package com.rendyrobbani.keuangan.schema;
 
 import com.rendyrobbani.keuangan.common.schema.table.Table;
+import com.rendyrobbani.keuangan.schema.master.codes.fungsi.DataMasterFungsiTable;
 import com.rendyrobbani.keuangan.schema.user.DataUserTable;
 import com.rendyrobbani.keuangan.schema.user.LogsUserTable;
 
@@ -16,6 +17,8 @@ public class Schema {
 			tables = new ArrayList<>();
 			tables.add(DataUserTable.getTable());
 			tables.add(LogsUserTable.getTable());
+
+			tables.add(DataMasterFungsiTable.getTable());
 		}
 		return tables;
 	}

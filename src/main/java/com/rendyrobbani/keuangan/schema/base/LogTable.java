@@ -27,13 +27,9 @@ public final class LogTable {
 		return columns;
 	}
 
-	private static List<ForeignKeyConstraint> foreignKeys;
-
 	public static List<ForeignKeyConstraint> getForeignKeys(String tableName, int index) {
-		if (foreignKeys == null) {
-			foreignKeys = new ArrayList<>();
-			foreignKeys.add(ForeignKeyConstraintFactory.create(tableName, foreignKeys.size() + index, "logged_by", DataUserTable.NAME, "id"));
-		}
+		var foreignKeys = new ArrayList<ForeignKeyConstraint>();
+		foreignKeys.add(ForeignKeyConstraintFactory.create(tableName, foreignKeys.size() + index, "logged_by", DataUserTable.NAME, "id"));
 		return foreignKeys;
 	}
 

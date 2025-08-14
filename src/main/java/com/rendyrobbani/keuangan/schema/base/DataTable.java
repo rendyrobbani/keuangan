@@ -30,15 +30,11 @@ public final class DataTable {
 		return columns;
 	}
 
-	private static List<ForeignKeyConstraint> foreignKeys;
-
 	public static List<ForeignKeyConstraint> getForeignKeys(String tableName, int index) {
-		if (foreignKeys == null) {
-			foreignKeys = new ArrayList<>();
-			foreignKeys.addAll(BaseTable.getForeignKeys(tableName, foreignKeys.size() + index));
-			foreignKeys.add(ForeignKeyConstraintFactory.create(tableName, foreignKeys.size() + index, "updated_by", DataUserTable.NAME, "id"));
-			foreignKeys.add(ForeignKeyConstraintFactory.create(tableName, foreignKeys.size() + index, "deleted_by", DataUserTable.NAME, "id"));
-		}
+		var foreignKeys = new ArrayList<ForeignKeyConstraint>();
+		foreignKeys.addAll(BaseTable.getForeignKeys(tableName, foreignKeys.size() + index));
+		foreignKeys.add(ForeignKeyConstraintFactory.create(tableName, foreignKeys.size() + index, "updated_by", DataUserTable.NAME, "id"));
+		foreignKeys.add(ForeignKeyConstraintFactory.create(tableName, foreignKeys.size() + index, "deleted_by", DataUserTable.NAME, "id"));
 		return foreignKeys;
 	}
 
