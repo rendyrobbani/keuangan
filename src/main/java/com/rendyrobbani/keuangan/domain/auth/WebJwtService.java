@@ -1,5 +1,7 @@
 package com.rendyrobbani.keuangan.domain.auth;
 
+import com.rendyrobbani.keuangan.domain.model.entity.user.DataUser;
+
 public interface WebJwtService {
 
 	String encode(WebJwtPayload payload);
@@ -7,6 +9,8 @@ public interface WebJwtService {
 	WebJwtPayload decode(String token);
 
 	void setToken(WebJwtPayload payload);
+
+	void setToken(DataUser user);
 
 	WebJwtPayload getToken();
 

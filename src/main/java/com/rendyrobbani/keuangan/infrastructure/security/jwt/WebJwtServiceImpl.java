@@ -3,6 +3,7 @@ package com.rendyrobbani.keuangan.infrastructure.security.jwt;
 import com.rendyrobbani.keuangan.common.exception.http.UnauthorizedException;
 import com.rendyrobbani.keuangan.domain.auth.WebJwtPayload;
 import com.rendyrobbani.keuangan.domain.auth.WebJwtService;
+import com.rendyrobbani.keuangan.domain.model.entity.user.DataUser;
 import com.rendyrobbani.keuangan.domain.port.outgoing.repository.user.DataUserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -73,6 +74,11 @@ public class WebJwtServiceImpl implements WebJwtService {
 	@Override
 	public void setToken(WebJwtPayload payload) {
 		SecurityContextHolder.getContext().setAuthentication(payload == null ? null : new UsernamePasswordAuthenticationToken(payload, encode(payload), null));
+	}
+
+	@Override
+	public void setToken(DataUser user) {
+		this.setToken(new WebJwtPayloadRecord(tahun, user));
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import com.rendyrobbani.keuangan.common.schema.column.Column;
 import com.rendyrobbani.keuangan.common.schema.column.ColumnFactory;
 import com.rendyrobbani.keuangan.common.schema.constraint.foreign.ForeignKeyConstraint;
 import com.rendyrobbani.keuangan.common.schema.constraint.foreign.ForeignKeyConstraintFactory;
+import com.rendyrobbani.keuangan.schema.user.BaseUserTable;
 import com.rendyrobbani.keuangan.schema.user.DataUserTable;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -13,16 +14,15 @@ import java.util.List;
 
 @SuppressWarnings("ConstantValue")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class LockTable {
+public final class LogTable {
 
 	private static List<Column> columns;
 
 	public static List<Column> getColumns() {
 		if (columns == null) {
 			columns = new ArrayList<>();
-			columns.add(ColumnFactory.createBoolean("is_locked", false));
-			columns.add(ColumnFactory.createDateTime("locked_at", true));
-			columns.add(ColumnFactory.createNip("locked_by", true));
+			columns.add(ColumnFactory.createDateTime("logged_at", true));
+			columns.add(ColumnFactory.createNip("logged_by", true));
 		}
 		return columns;
 	}
@@ -32,7 +32,7 @@ public final class LockTable {
 	public static List<ForeignKeyConstraint> getForeignKeys(String tableName, int index) {
 		if (foreignKeys == null) {
 			foreignKeys = new ArrayList<>();
-			foreignKeys.add(ForeignKeyConstraintFactory.create(tableName, foreignKeys.size() + index, "locked_by", DataUserTable.NAME, "id"));
+			foreignKeys.add(ForeignKeyConstraintFactory.create(tableName, foreignKeys.size() + index, "logged_by", DataUserTable.NAME, "id"));
 		}
 		return foreignKeys;
 	}

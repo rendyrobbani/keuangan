@@ -4,8 +4,6 @@ import com.rendyrobbani.keuangan.common.schema.column.Column;
 import com.rendyrobbani.keuangan.common.schema.column.ColumnFactory;
 import com.rendyrobbani.keuangan.common.schema.constraint.check.CheckConstraint;
 import com.rendyrobbani.keuangan.common.schema.constraint.check.CheckConstraintFactory;
-import com.rendyrobbani.keuangan.common.schema.constraint.foreign.ForeignKeyConstraint;
-import com.rendyrobbani.keuangan.schema.base.DataTable;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -15,8 +13,6 @@ import java.util.List;
 @SuppressWarnings("ConstantValue")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class BaseUserTable {
-
-	public static final String NAME = "data_user";
 
 	private static List<Column> columns;
 
