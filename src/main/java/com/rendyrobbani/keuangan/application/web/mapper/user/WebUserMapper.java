@@ -11,7 +11,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class WebUserDataMapper {
+public final class WebUserMapper {
 
 	public static WebUserDataSelectResponse toSelectResponse(DataUser domain) {
 		return new WebUserDataSelectResponseRecord(domain.id(),

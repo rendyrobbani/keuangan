@@ -1,6 +1,6 @@
 package com.rendyrobbani.keuangan.application.web.service.user;
 
-import com.rendyrobbani.keuangan.application.web.mapper.user.WebUserDataMapper;
+import com.rendyrobbani.keuangan.application.web.mapper.user.WebUserMapper;
 import com.rendyrobbani.keuangan.common.exception.http.BadRequestException;
 import com.rendyrobbani.keuangan.domain.auth.WebJwtService;
 import com.rendyrobbani.keuangan.domain.model.dto.web.user.WebUserDataCreateRequest;
@@ -44,14 +44,14 @@ public class WebUserDataCreateServiceImpl implements WebUserDataCreateService {
 		else {
 			var domain = dataRepository.selectById(request.nip().simple()).orElse(null);
 			if (domain == null) {
-				domain = WebUserDataMapper.toDomain(request, bCryptPasswordEncoder.encode(defaultPassword));
+				domain = WebUserMapper.toDomain(request, bCryptPasswordEncoder.encode(defaultPassword));
 				domain = dataRepository.create(domain, actionAt, actionBy);
-				return WebUserDataMapper.toDetailResponse(domain);
+				return WebUserMapper.toDetailResponse(domain);
 			}
 
 			if (domain.isDeleted()) {
 				domain = dataRepository.restore(domain, actionAt, actionBy);
-				return WebUserDataMapper.toDetailResponse(domain);
+				return WebUserMapper.toDetailResponse(domain);
 			} else {
 				throw new BadRequestException(Map.of("nip", List.of("sudah digunakan")));
 			}

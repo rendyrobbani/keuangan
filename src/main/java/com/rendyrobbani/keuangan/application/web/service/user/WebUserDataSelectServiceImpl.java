@@ -1,6 +1,6 @@
 package com.rendyrobbani.keuangan.application.web.service.user;
 
-import com.rendyrobbani.keuangan.application.web.mapper.user.WebUserDataMapper;
+import com.rendyrobbani.keuangan.application.web.mapper.user.WebUserMapper;
 import com.rendyrobbani.keuangan.common.exception.http.NotFoundException;
 import com.rendyrobbani.keuangan.domain.model.dto.web.user.WebUserDataDetailResponse;
 import com.rendyrobbani.keuangan.domain.model.dto.web.user.WebUserDataSelectResponse;
@@ -19,12 +19,12 @@ public class WebUserDataSelectServiceImpl implements WebUserDataSelectService {
 
 	@Override
 	public List<WebUserDataSelectResponse> selectAll() {
-		return this.repository.selectAll().stream().map(WebUserDataMapper::toSelectResponse).toList();
+		return this.repository.selectAll().stream().map(WebUserMapper::toSelectResponse).toList();
 	}
 
 	@Override
 	public WebUserDataDetailResponse selectById(String id) {
-		return this.repository.selectById(id).map(WebUserDataMapper::toDetailResponse).orElseThrow(NotFoundException::new);
+		return this.repository.selectById(id).map(WebUserMapper::toDetailResponse).orElseThrow(NotFoundException::new);
 	}
 
 }
