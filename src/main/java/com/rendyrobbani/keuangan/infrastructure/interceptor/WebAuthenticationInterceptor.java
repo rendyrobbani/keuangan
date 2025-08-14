@@ -15,7 +15,7 @@ import java.util.List;
 public class WebAuthenticationInterceptor implements HandlerInterceptor {
 
 	private final List<String> whitelist = List.of(
-//			"POST" + APPV1AuthenticationController.PATH_PRELOGIN
+			"POST/web/auth/prelogin"
 	                                              );
 
 	private final WebJwtService webJwtService;
